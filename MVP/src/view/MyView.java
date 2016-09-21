@@ -34,7 +34,7 @@ public class MyView extends Observable implements View {
 			    			String cliInput;
 			    			// Run as long as user did not entered 'exit'
 			    			do {
-			    				print("Please enter command");
+			    				display("Please enter command");
 			    				cliInput = in.readLine();
 			    				// Split user input by ' '
 			    				String[] arr = cliInput.split(" ");
@@ -54,7 +54,7 @@ public class MyView extends Observable implements View {
 	 * print data from the view
 	 * @param s String to print
 	 */
-	public void print(String s) {
+	public void display(String s) {
 		out.print(s);
 		out.flush();
 	}
