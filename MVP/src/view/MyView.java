@@ -39,6 +39,7 @@ public class MyView extends Observable implements View {
 			    				// Split user input by ' '
 			    				String[] arr = cliInput.split(" ");
 			    				// Set commands as first argument
+			    				setChanged();
 			    				notifyObservers(arr);
 			    			} while (!cliInput.equals("exit"));
 			    		} catch (IOException e) {

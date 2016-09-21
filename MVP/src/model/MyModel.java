@@ -146,6 +146,6 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void display(String string) {
 		setChanged();
-		notifyObservers(string);
+		notifyObservers(new String[] {"print", string});
 	}
 }
