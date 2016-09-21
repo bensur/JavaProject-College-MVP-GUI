@@ -22,7 +22,7 @@ public class Display implements Runnable {
 	 * @param model
 	 * @param mazeName
 	 */
-	private Display(Model model, String mazeName, HashMap <String, Maze3d> mazes) {
+	public Display(Model model, String mazeName, HashMap <String, Maze3d> mazes) {
 		this.model = model;
 		this.mazeName = mazeName;
 		this.mazes = mazes;
@@ -43,7 +43,7 @@ public class Display implements Runnable {
 			}
 			sb.append(maze2dToString(maze.getCrossSectionByZ(maze.getFlos() -1)));
 		}
-		model.notifyObservers(sb.toString());
+		model.display(sb.toString());
 	}
 	
 	private String maze2dToString(int[][] maze) {

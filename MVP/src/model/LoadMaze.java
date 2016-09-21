@@ -42,7 +42,7 @@ public class LoadMaze implements Runnable {
 	@Override
 	public void run() {
 		if (mazes.containsKey(mazeName))
-			model.notifyObservers("Maze '" + mazeName + "' already exist!");
+			model.display("Maze '" + mazeName + "' already exist!");
 		else {
 			InputStream in;
 			try {
@@ -57,10 +57,10 @@ public class LoadMaze implements Runnable {
 				
 				model.doSomething(new Object[]{"add_maze", mazeName, new Maze3d(b)}); //TODO
 			} catch (FileNotFoundException e) {
-				model.notifyObservers("Cannot access '" + fileName + "': No such file");
+				model.display("Cannot access '" + fileName + "': No such file");
 				e.printStackTrace();
 			} catch (IOException e) {
-				model.notifyObservers("IOException occured while loading from '" + fileName + "'");
+				model.display("IOException occured while loading from '" + fileName + "'");
 				e.printStackTrace();
 			}
 		}

@@ -42,7 +42,7 @@ public class SaveMaze implements Runnable {
 	@Override
 	public void run() {
 		if (!mazes.containsKey(mazeName))
-			model.notifyObservers("No such maze " + mazeName);
+			model.display("No such maze " + mazeName);
 		else {
 			OutputStream out;
 			try {
@@ -51,10 +51,10 @@ public class SaveMaze implements Runnable {
 				out.flush();
 				out.close();
 			} catch (FileNotFoundException e) {
-				model.notifyObservers("Cannot access '" + fileName + "': No such file");
+				model.display("Cannot access '" + fileName + "': No such file");
 				e.printStackTrace();
 			} catch (IOException e) {
-				model.notifyObservers("IOException occured while saving to '" + fileName + "'");
+				model.display("IOException occured while saving to '" + fileName + "'");
 				e.printStackTrace();
 			}
 		}

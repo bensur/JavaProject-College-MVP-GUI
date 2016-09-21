@@ -18,5 +18,5 @@ public interface Model {
 	 * 
 	 * @param string
 	 */
-	public void notifyObservers(String string);
+	public void display(String string);
 }

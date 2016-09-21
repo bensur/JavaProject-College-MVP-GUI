@@ -20,10 +20,9 @@ public class Dir implements Runnable {
 	 * @param file
 	 * @param fileslist
 	 */
-	public Dir(Model model, File file, String[] fileslist) {
+	public Dir(Model model, String path) {
 		this.model = model;
-		this.file = file;
-		this.filesList = fileslist;
+		this.file = new File(path);
 	}
 
 	/* (non-Javadoc)
@@ -34,11 +33,11 @@ public class Dir implements Runnable {
 		if(file.isDirectory()) {
 			filesList = file.list();
 			for (int i = 0; i < filesList.length; i++) {
-				model.notifyObservers(filesList[i]);
+				model.display(filesList[i]);
 			}
 		}
 		else {
-			model.notifyObservers("Not a directory");
+			model.display("Not a directory");
 		}
 	}
 }

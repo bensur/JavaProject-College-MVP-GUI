@@ -55,7 +55,7 @@ public class DisplayCrossSection implements Runnable {
 				throw new IllegalArgumentException("No such axis " + axis);
 			sb.append(maze2dToString(maze2d));
 		}
-		model.notifyObservers(sb.toString());
+		model.display(sb.toString());
 
 	}
 	

@@ -35,10 +35,10 @@ public class DisplaySolution implements Runnable {
 	public void run() {
 		Solution<Position> sol = solutions.get(mazeName);
 		if (solutions.containsKey(mazeName)) {
-			model.notifyObservers(sol.toString());
+			model.display(sol.toString());
 		}
 		else {
-			model.notifyObservers("No solution found for maze " + mazeName);
+			model.display("No solution found for maze " + mazeName);
 		}
 
 	}

@@ -28,16 +28,16 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void doSomething(Object[] args) {
 		if ((args == null) || (args[0] == null)) {
-			notifyObservers("No argument given");
+			display("No argument given");
 			return;
 		} else if (!(args[0] instanceof String)) {
-			notifyObservers("Invalid arguments");
+			display("Invalid arguments");
 			return;
 		}
 		switch ((String)args[0]) {
 		case "generate_maze":
 			if (args.length != 6) {
-				notifyObservers("generate_maze command need 5 arguments:\ngenerate_maze <MAZE_NAME> <FLOORS> <ROWS> <COLUMNS> <ALGORITHM>");
+				display("generate_maze command need 5 arguments:\ngenerate_maze <MAZE_NAME> <FLOORS> <ROWS> <COLUMNS> <ALGORITHM>");
 			} else {
 				String[] stringArgs = (String[])args;
 				String mazeName = stringArgs[1];
@@ -50,13 +50,13 @@ public class MyModel extends Observable implements Model {
 			break;
 		case "solve":
 			if (args.length != 3) {
-				notifyObservers("solve command need 2 arguments:\nsolve <MAZE_NAME> <ALGORITHM>");
+				display("solve command need 2 arguments:\nsolve <MAZE_NAME> <ALGORITHM>");
 			} else {
 				String[] stringArgs = (String[])args;
 				String mazeName = stringArgs[1];
 				String alg = stringArgs[2];
 				if (!mazes.containsKey(mazeName)) {
-					notifyObservers("No such maze " + args[1]);
+					display("No such maze " + args[1]);
 				} else {
 					executor.execute(new SolveMaze(this, mazes.get(mazeName), mazeName, alg));
 				}
@@ -64,7 +64,7 @@ public class MyModel extends Observable implements Model {
 			break;
 		case "dir":
 			if (args.length != 2) {
-				notifyObservers("dir command need 1 argument:\ndir <PATH>");
+				display("dir command need 1 argument:\ndir <PATH>");
 			} else {
 				String[] stringArgs = (String[])args;
 				String path = stringArgs[1];
@@ -74,29 +74,28 @@ public class MyModel extends Observable implements Model {
 			break;
 		case "display":
 			if (args.length != 2) {
-				notifyObservers("display command need 1 argument:\ndisplay <MAZE_NAME>");
+				display("display command need 1 argument:\ndisplay <MAZE_NAME>");
 			} else {
 				String[] stringArgs = (String[])args;
 				String mazeName = stringArgs[1];
 				//TODO
-				executor.execute(new Display(this, mazeName));
+				executor.execute(new Display(this, mazeName, mazes));
 			}
 			break;
 		case "display_cross_section":
 			if (args.length != 2) {
-				notifyObservers("display_cross_section command need 3 arguments:\ndisplay_cross_section <MAZE_NAME> <AXIS> <INDEX>");
+				display("display_cross_section command need 3 arguments:\ndisplay_cross_section <MAZE_NAME> <AXIS> <INDEX>");
 			} else {
 				String[] stringArgs = (String[])args;
 				String mazeName = stringArgs[1];
 				char axis = (stringArgs[2]).toCharArray()[0];
 				int index = Integer.parseInt(stringArgs[3]);
-				//TODO
-				executor.execute(new DisplayCrossSection(this, mazeName, axis, index, mazes));
+				executor.execute(new DisplayCrossSection(this, mazeName, mazes, axis, index));
 			}
 			break;
 		case "save_maze":
 			if (args.length != 3) {
-				notifyObservers("save_maze command need 2 arguments:\nsave_maze <MAZE_NAME> <FILE_NAME>");
+				display("save_maze command need 2 arguments:\nsave_maze <MAZE_NAME> <FILE_NAME>");
 			} else {
 				String[] stringArgs = (String[])args;
 				String mazeName = stringArgs[1];
@@ -106,7 +105,7 @@ public class MyModel extends Observable implements Model {
 			break;
 		case "load_maze":
 			if (args.length != 3) {
-				notifyObservers("load_maze command need 2 arguments:\nsave_maze <MAZE_NAME> <FILE_NAME>");
+				display("load_maze command need 2 arguments:\nsave_maze <MAZE_NAME> <FILE_NAME>");
 			} else {
 				String[] stringArgs = (String[])args;
 				String mazeName = stringArgs[1];
@@ -122,7 +121,7 @@ public class MyModel extends Observable implements Model {
 			}
 			break;
 		default:
-			notifyObservers((String)args[0] + ": command not found");
+			display((String)args[0] + ": command not found");
 			break;
 		}
 	}
@@ -131,7 +130,8 @@ public class MyModel extends Observable implements Model {
 	 * 
 	 */
 	@Override
-	public void notifyObservers(String string) {
+	public void display(String string) {
+		setChanged();
 		notifyObservers(string);
 	}
 }
