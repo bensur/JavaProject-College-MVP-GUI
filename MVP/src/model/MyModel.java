@@ -68,7 +68,6 @@ public class MyModel extends Observable implements Model {
 			} else {
 				String[] stringArgs = (String[])args;
 				String path = stringArgs[1];
-				//TODO
 				executor.execute(new Dir(this, path));
 			}
 			break;
@@ -78,7 +77,6 @@ public class MyModel extends Observable implements Model {
 			} else {
 				String[] stringArgs = (String[])args;
 				String mazeName = stringArgs[1];
-				//TODO
 				executor.execute(new Display(this, mazeName, mazes));
 			}
 			break;
@@ -119,6 +117,22 @@ public class MyModel extends Observable implements Model {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			break;
+		case "add_maze":
+			String mazeName = (String)args[1];
+			Maze3d maze = (Maze3d)args[2];
+			if (mazes.containsKey(mazeName))
+				display("Maze " + mazeName + " already exist!");
+			else
+				mazes.put(mazeName, maze);
+			break;
+		case "add_solution":
+			String solvedMazeName = (String)args[1];
+			Solution<Position> solution = (Solution<Position>)args[2];
+			if (solutions.containsKey(solvedMazeName))
+				display("Solution of maze " + solvedMazeName + " already exist!");
+			else
+				solutions.put(solvedMazeName, solution);
 			break;
 		default:
 			display((String)args[0] + ": command not found");
