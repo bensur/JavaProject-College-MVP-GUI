@@ -32,11 +32,11 @@ public class Presenter implements Observer {
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object arg) { //TODO use model and view if
 		String commandLine = (String)arg;
 		String arr[] = commandLine.split(" ");
-		String command = arr[0];	
-
+		String command = arr[0];
+		
 		if(!commands.containsKey(command)) {
 			view.display(command + ": command not found");
 		}

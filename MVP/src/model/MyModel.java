@@ -3,10 +3,18 @@
  */
 package model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Observable;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import algorithms.search.BFS;
@@ -23,14 +31,6 @@ import mazeGenerators.algorithms.Position;
 import mazeGenerators.algorithms.SimpleMaze3dGenerator;
 import mazeGenerators.algorithms.lastCellChooser;
 import mazeGenerators.algorithms.randomCellChooser;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.concurrent.Callable;
 
 /**
  * @author Ben Surkiss & Yovel Shchori
@@ -95,7 +95,7 @@ public class MyModel extends Observable implements Model {
 	
 	@Override
 	public void loadMaze(String mazeName, String fileName) {
-		executor.submit(new Callable<Maze3d>() { //TODO return Future<V>
+		Future<Maze3d> fMaze = executor.submit(new Callable<Maze3d>() { //TODO return Future<V>
 
 			@Override
 			public Maze3d call() throws Exception {
@@ -159,7 +159,7 @@ public class MyModel extends Observable implements Model {
 	
 	@Override
 	public void solveMaze(String mazeName, String alg) {
-		executor.submit(new Callable<Solution<Position>>() { //TODO return Future<V>
+		Future<Solution<Position>> fSolution = executor.submit(new Callable<Solution<Position>>() { //TODO return Future<V>
 
 			@Override
 			public Solution<Position> call() throws Exception {
@@ -191,7 +191,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void display(String string) {
 		setChanged();
-		notifyObservers(new String[] {"print", string});
+		notifyObservers("print " + string);
 	}
 	
 	@Override
@@ -201,7 +201,7 @@ public class MyModel extends Observable implements Model {
 		else
 			mazes.put(mazeName, maze);
 	}
-
+	
 	@Override
 	public void addMazeSolution(String mazeName, Solution<Position> solution) {
 		if (solutions.containsKey(mazeName))

@@ -37,6 +37,10 @@ public class CommandsManager {
 		commands.put("load_maze", new LoadMaze());
 		commands.put("solve", new SolveMaze());
 		commands.put("display_solution", new DisplaySolution());
+		commands.put("print", new Print());
+		commands.put("solution_ready_for", new SolutionReady());
+		commands.put("maze_loaded", new MazeLoaded());
+		commands.put("maze_ready", new MazeReady());
 		commands.put("exit", new Exit());
 		return commands;
 	}
@@ -263,7 +267,7 @@ public class CommandsManager {
 		private String alg;
 		
 		/* (non-Javadoc)
-		 * @see controller.Command#doCommand()
+		 * @see presenter.Command#doCommand()
 		 */
 		@Override
 		public void doCommand(String args[]) {
@@ -274,6 +278,65 @@ public class CommandsManager {
 				this.alg = args[1];
 				model.solveMaze(mazeName, alg);
 			}
+		}
+	}
+	/**
+	 * @author Ben Surkiss & Yovel Shchori
+	 * TODO comment
+	 */
+	public class Print implements Command {
+		/* (non-Javadoc)
+		 * @see presenter.Command#doCommand()
+		 */
+		@Override
+		public void doCommand(String[] args) {
+			// TODO check input
+			StringBuilder sb = new StringBuilder();
+			for (String s : args)
+				sb.append(s + " ");
+			view.display(sb.toString());
+		}
+	}
+	/**
+	 * @author Ben Surkiss & Yovel Shchori
+	 * TODO comment
+	 */
+	public class SolutionReady implements Command {
+		/* (non-Javadoc)
+		 * @see presenter.Command#doCommand()
+		 */
+		@Override
+		public void doCommand(String[] args) {
+			// TODO check input
+			view.display(model.getSolutions().get(args[0]).toString());
+		}
+	}
+	/**
+	 * @author Ben Surkiss & Yovel Shchori
+	 * TODO comment
+	 */
+	public class MazeLoaded implements Command {
+		/* (non-Javadoc)
+		 * @see presenter.Command#doCommand()
+		 */
+		@Override
+		public void doCommand(String[] args) {
+			// TODO check input
+			view.display(model.getMazes().get(args[0]).toString());
+		}
+	}
+	/**
+	 * @author Ben Surkiss & Yovel Shchori
+	 * TODO comment
+	 */
+	public class MazeReady implements Command {
+		/* (non-Javadoc)
+		 * @see presenter.Command#doCommand()
+		 */
+		@Override
+		public void doCommand(String[] args) {
+			// TODO check input
+			view.display(model.getMazes().get(args[0]).toString());
 		}
 	}
 	/**
