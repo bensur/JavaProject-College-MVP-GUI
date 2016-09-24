@@ -1,5 +1,9 @@
 package view;
 
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
@@ -23,6 +27,53 @@ public abstract class MazeDisplayer extends Canvas{
 		this.curPosition = curPosition;
 		this.curFloor = curPosition.getZ();
 		this.mazeData = maze.getCrossSectionByZ(curFloor);
+				
+		this.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				//Position pos = curPosition;
+				switch (e.keyCode) {
+				case SWT.ARROW_RIGHT:					
+					moveRight();
+					redraw();
+					System.out.println("RIGHT");
+					break;
+				
+				case SWT.ARROW_LEFT:					
+					moveLeft();
+					redraw();
+					break;
+					
+				case SWT.ARROW_UP:					
+					moveForward();
+					redraw();
+					break;
+				
+				case SWT.ARROW_DOWN:					
+					moveBackward();
+					redraw();
+					break;
+				
+				case SWT.PAGE_UP:					
+					moveUp();
+					redraw();
+					break;
+					
+				case SWT.PAGE_DOWN:					
+					moveDown();
+					redraw();
+					break;
+				}
+			}
+		});
+		
 	}
 
 	public void setMaze(Maze3d maze) {
