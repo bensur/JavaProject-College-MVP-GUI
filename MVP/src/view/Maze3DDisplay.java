@@ -65,10 +65,15 @@ public class Maze3DDisplay extends MazeDisplayer {
 					for(int j=0;j<mazeData[i].length;j++){
 						double []dpoints={start+j*w0,i*h,start+j*w0+w0,i*h,start1+j*w1+w1,i*h+h,start1+j*w1,i*h+h};
 						double cheight=h/2;
-						if(mazeData[i][j]!=0)
+						if (mazeData[i][j]!=0)
 							paintCube(dpoints, cheight,e);
-
-						if(i==curPosition.getY() && j==curPosition.getX()){
+						if (new Position(j,i,curFloor) == maze.getGoalPosition()) {
+							e.gc.setBackground(new Color(null,0,200,0));
+						}
+						if (new Position(j,i,curFloor) == maze.getStartPosition()) {
+							e.gc.setBackground(new Color(null,0,0,200));
+						}
+						if (i==curPosition.getY() && j==curPosition.getX()){
 							e.gc.setBackground(new Color(null,200,0,0));
 							e.gc.fillOval((int)Math.round(dpoints[0]), (int)Math.round(dpoints[1]-cheight/2), (int)Math.round((w0+w1)/2), (int)Math.round(h));
 							e.gc.setBackground(new Color(null,255,0,0));
