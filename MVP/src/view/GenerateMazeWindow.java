@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * @author yschori
+ * @author Ben Surkiss & Yovel Shchori
  *
  */
 public class GenerateMazeWindow extends DialogWindow {
@@ -82,21 +82,16 @@ public class GenerateMazeWindow extends DialogWindow {
 				String name = txtName.getText();
 				String alg = txtAlg.getText();
 
-				view.generateMaze(name, rows, cols, flos, alg);
-				
 				msg.setMessage("Generating maze: " + name + " with rows: " + rows + " cols: " + cols + " floors: " + flos + " using algorithm: " + alg);				
 				msg.open();
 				
+				view.generateMaze(name, rows, cols, flos, alg);
 				
 				shell.close();
 			}
 			
 			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {			
-				
-			}
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});	
-
 	}
-
 }

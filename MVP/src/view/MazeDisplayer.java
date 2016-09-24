@@ -31,10 +31,7 @@ public abstract class MazeDisplayer extends Canvas{
 		this.addKeyListener(new KeyListener() {
 			
 			@Override
-			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyReleased(KeyEvent arg0) {}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -76,10 +73,15 @@ public abstract class MazeDisplayer extends Canvas{
 
 	public void setMaze(Maze3d maze) {
 		this.maze = maze;
-		this.curPosition = maze.getStartPosition();
-		this.curFloor = curPosition.getZ();
-		this.mazeData = maze.getCrossSectionByZ(curFloor);
-		redraw();
+		this.curPosition = this.maze.getStartPosition();
+		this.curFloor = this.curPosition.getZ();
+		this.mazeData = this.maze.getCrossSectionByZ(this.curFloor);
+		getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				redraw();
+			}
+		});
 	}
 	
 	public void setCurPosition(Position curPosition) {
@@ -87,7 +89,7 @@ public abstract class MazeDisplayer extends Canvas{
 	}
 	
 	public abstract  void setCharacterPosition(int row,int col, int flors);
-
+	
 	public abstract void moveUp();
 
 	public abstract  void moveDown();

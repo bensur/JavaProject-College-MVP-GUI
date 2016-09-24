@@ -29,11 +29,13 @@ public class Maze3DDisplay extends MazeDisplayer {
 		e.gc.fillPolygon(r);
 
 	}
-	public Maze3DDisplay(Composite parent, int style, Maze3d maze, Position startPos) {
-		super(parent, style, maze, startPos);
+	public Maze3DDisplay(Composite parent, int style, Maze3d maze3d, Position startPos) {
+		super(parent, style, maze3d, startPos);
 
-		final Color white=new Color(null, 255, 255, 255);
-		final Color black=new Color(null, 150,150,150);
+		final Color white = new Color(null, 255, 255, 255);
+		final Color black = new Color(null, 0,0,0);
+		final Color red = new Color(null,255,0,0);
+		final Color darkRed = new Color(null,200,0,0);
 		final Image startImage = new Image(getDisplay(), "start.png");
 		final Image endImage = new Image(getDisplay(), "end.png");
 		
@@ -46,8 +48,8 @@ public class Maze3DDisplay extends MazeDisplayer {
 					curFloor = curPosition.getZ();
 					mazeData = maze.getCrossSectionByZ(curFloor);
 				}
-				e.gc.setForeground(new Color(null,0,0,0));
-				e.gc.setBackground(new Color(null,0,0,0));
+				e.gc.setForeground(black);
+				e.gc.setBackground(black);
 
 				int width=getSize().x;
 				int height=getSize().y;
@@ -71,13 +73,13 @@ public class Maze3DDisplay extends MazeDisplayer {
 							paintCube(dpoints, cheight,e);
 						
 						if (i==curPosition.getX() && j==curPosition.getY()){
-							e.gc.setBackground(new Color(null,200,0,0));
+							e.gc.setBackground(darkRed);
 							e.gc.fillOval((int)Math.round(dpoints[0]), (int)Math.round(dpoints[1]-cheight/2), 
 									      (int)Math.round((w0+w1)/2), (int)Math.round(h));
-							e.gc.setBackground(new Color(null,255,0,0));
+							e.gc.setBackground(red);
 							e.gc.fillOval((int)Math.round(dpoints[0]+2), (int)Math.round(dpoints[1]-cheight/2+2), 
 									      (int)Math.round((w0+w1)/2/1.5), (int)Math.round(h/1.5));
-							e.gc.setBackground(new Color(null,0,0,0));				        	  
+							e.gc.setBackground(black);				        	  
 						}
 						// Add start image to start position TODO - fix positioning
 						if ((i == startPos.getX()) && (j == startPos.getX()) &&(curFloor == startPos.getZ())) {
@@ -100,12 +102,14 @@ public class Maze3DDisplay extends MazeDisplayer {
 			}
 		});
 	}
-	
+	/**
+	 * Move character to given position
+	 * @param pos to move character to
+	 */
 	private void moveCharacter(Position pos) {
-		if (maze.isValidPosition(pos)) {
+		if (this.maze.isValidPosition(pos)) {
 			this.curPosition = pos;
 			getDisplay().syncExec(new Runnable() {
-
 				@Override
 				public void run() {
 					redraw();
@@ -113,7 +117,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 			});
 		}
 	}
-
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveUp()
 	 */
@@ -123,11 +126,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (p != null) {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
-//		else {
-//			System.out.println("above Position of " + curPosition.toString() + " not a valid position");
-//			System.out.println("curFloor (" + curFloor + "):");
-//			System.out.println(maze2dToString(maze.getCrossSectionByZ(curFloor)));
-//		}
 	}
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveDown()
@@ -138,11 +136,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (p != null) {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
-//		else {
-//			System.out.println("below Position of " + curPosition.toString() + " not a valid position");
-//			System.out.println("curFloor (" + curFloor + "):");
-//			System.out.println(maze2dToString(maze.getCrossSectionByZ(curFloor)));
-//		}
 	}
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveLeft()
@@ -153,11 +146,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (p != null) {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
-//		else {
-//			System.out.println("left Position of " + curPosition.toString() + " not a valid position");
-//			System.out.println("curFloor (" + curFloor + "):");
-//			System.out.println(maze2dToString(maze.getCrossSectionByZ(curFloor)));
-//		}
 	}
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveRight()
@@ -168,11 +156,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (p != null) {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
-//		else {
-//			System.out.println("right Position of " + curPosition.toString() + " not a valid position");
-//			System.out.println("curFloor (" + curFloor + "):");
-//			System.out.println(maze2dToString(maze.getCrossSectionByZ(curFloor)));
-//		}
 	}
 	
 	/* (non-Javadoc)
@@ -184,11 +167,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (p != null) {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
-//		else {
-//			System.out.println("forward Position of " + curPosition.toString() + " not a valid position");
-//			System.out.println("curFloor (" + curFloor + "):");
-//			System.out.println(maze2dToString(maze.getCrossSectionByZ(curFloor)));
-//		}
 	}
 	
 	/* (non-Javadoc)
@@ -200,11 +178,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (p != null) {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
-//		else {
-//			System.out.println("backward Position of " + curPosition.toString() + " not a valid position");
-//			System.out.println("curFloor (" + curFloor + "):");
-//			System.out.println(maze2dToString(maze.getCrossSectionByZ(curFloor)));
-//		}
 	}
 
 	@Override
@@ -213,25 +186,5 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (p != null) {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
-	}
-	/**
-	 * Private method to convert 2d int maze to String
-	 * @param maze 2d int representation of maze
-	 */
-	private String maze2dToString(int[][] maze) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("{\n");
-		for (int i = 0 ; i < (maze.length - 1) ; i++) {
-			sb.append("\t{");
-			for (int j = 0 ; j < (maze[i].length - 1) ; j++)
-				sb.append(maze[i][j] + ", ");
-			sb.append(maze[i][maze[i].length - 1] + "},\n");
-		}
-		sb.append("\t{");
-		for (int i = 0 ; i < (maze[maze.length - 1].length - 1) ; i++)
-			sb.append(maze[maze.length - 1][i] + ", ");
-		sb.append(maze[maze.length - 1][maze[maze.length - 1].length - 1] + "}\n");
-		sb.append("}");
-		return sb.toString();
 	}
 }

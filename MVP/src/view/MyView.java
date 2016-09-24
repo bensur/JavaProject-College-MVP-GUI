@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Observer;
 
+import mazeGenerators.algorithms.Maze3d;
+
 /**
  * @author Ben Surkiss & Yovel Shchori
  *
@@ -52,6 +54,12 @@ public class MyView extends Observable implements View, Observer {
 
 	@Override
 	public void generateMaze(String name, int rows, int cols, int flos, String alg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayMaze(Maze3d maze3d) {
 		// TODO Auto-generated method stub
 		
 	}
