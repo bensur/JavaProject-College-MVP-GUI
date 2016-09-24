@@ -54,8 +54,8 @@ public class MyView extends Observable implements View, Observer {
 
 	@Override
 	public void generateMaze(String name, int rows, int cols, int flos, String alg) {
-		// TODO Auto-generated method stub
-		
+		setChanged();
+		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos + " " + alg);
 	}
 
 	@Override

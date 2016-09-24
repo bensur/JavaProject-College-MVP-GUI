@@ -3,8 +3,6 @@
  */
 package view;
 
-import java.util.Observable;
-
 import mazeGenerators.algorithms.Maze3d;
 
 /**

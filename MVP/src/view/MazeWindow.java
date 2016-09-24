@@ -1,8 +1,5 @@
 package view;
 
-import java.util.Observable;
-import java.util.Random;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -10,9 +7,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 
-import mazeGenerators.algorithms.GrowingTreeGenerator;
 import mazeGenerators.algorithms.Maze3d;
-import mazeGenerators.algorithms.randomCellChooser;
 
 public class MazeWindow extends BasicWindow implements View{
 

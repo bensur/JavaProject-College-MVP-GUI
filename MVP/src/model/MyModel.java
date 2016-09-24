@@ -83,10 +83,8 @@ public class MyModel extends Observable implements Model {
 				// Generate maze and add to model
 				maze = gen.generate(rows, cols, floors);
 				mazes.put(name, maze);
-				System.out.println("New maze (" + name + ") generated");
 				setChanged();
-				notifyObservers("maze_ready " + name);	
-				
+				notifyObservers("maze_ready " + name);
 				return maze;
 			}
 			

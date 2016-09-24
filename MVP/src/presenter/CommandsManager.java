@@ -206,7 +206,6 @@ public class CommandsManager {
 			if ((args == null) || (args.length != 5))
 				view.display("generate_maze command need 5 arguments:\ngenerate_maze <MAZE_NAME> <FLOORS> <ROWS> <COLUMNS> <ALGORITHM>");
 			else {
-				System.out.println("Got new generate_maze request (presenter)");
 				this.mazeName = args[0];
 				this.floors = Integer.parseInt(args[1]);
 				this.rows = Integer.parseInt(args[2]);
@@ -336,7 +335,6 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args) {
 			// TODO check input
-			System.out.println("Maze (" + args[0] + ") is ready, asking view to display");
 			view.displayMaze(model.getMazes().get(args[0]));
 		}
 	}
