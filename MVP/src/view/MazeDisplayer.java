@@ -76,6 +76,10 @@ public abstract class MazeDisplayer extends Canvas{
 
 	public void setMaze(Maze3d maze) {
 		this.maze = maze;
+		this.curPosition = maze.getStartPosition();
+		this.curFloor = curPosition.getZ();
+		this.mazeData = maze.getCrossSectionByZ(curFloor);
+		redraw();
 	}
 	
 	public void setCurPosition(Position curPosition) {

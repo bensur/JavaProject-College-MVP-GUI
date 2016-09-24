@@ -321,7 +321,7 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args) {
 			// TODO check input
-			view.display(model.getMazes().get(args[0]).toString());
+			view.displayMaze(model.getMazes().get(args[0]));
 		}
 	}
 	/**
@@ -335,7 +335,7 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args) {
 			// TODO check input
-			view.display(model.getMazes().get(args[0]).toString());
+			view.displayMaze(model.getMazes().get(args[0]));
 		}
 	}
 	/**

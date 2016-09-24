@@ -17,6 +17,8 @@ import mazeGenerators.algorithms.randomCellChooser;
 public class MazeWindow extends BasicWindow implements View{
 
 	Maze3d maze;
+	View view = this;
+	MazeDisplayer mazeDisplayer;
 	
 	public MazeWindow(String title, int width, int height, Maze3d maze) {
 		super(title, width, height);
@@ -51,7 +53,7 @@ public class MazeWindow extends BasicWindow implements View{
 		generateMaze.setLayoutData(new GridData(SWT.FILL, SWT.None, false, false, 1, 1));
 		
 		//
-		MazeDisplayer mazeDisplayer=new Maze3DDisplay(shell, SWT.BORDER, maze, maze.getStartPosition());
+		mazeDisplayer=new Maze3DDisplay(shell, SWT.BORDER, maze, maze.getStartPosition());
 		mazeDisplayer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true,1,3));
 		
 		Button solveMaze=new Button(shell, SWT.PUSH);
@@ -68,6 +70,8 @@ public class MazeWindow extends BasicWindow implements View{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				GenerateMazeWindow win = new GenerateMazeWindow(view);
+				win.start(display);
 				//TODO
 			}
 			
@@ -90,6 +94,8 @@ public class MazeWindow extends BasicWindow implements View{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				
+				
 				//TODO
 			}
 			
@@ -98,28 +104,29 @@ public class MazeWindow extends BasicWindow implements View{
 		});
 		
 	}
-	
-	public static void main(String[] args) {
-		MazeWindow win=new MazeWindow("maze example", 500, 300, new GrowingTreeGenerator(new randomCellChooser()).generate(5, 5, 5));
-		win.run();
+
+	@Override
+	public void display(String s) {
+		// TODO Auto-generated method stub
+		System.out.println(s);
+	}
+
+	@Override
+	public void generateMaze(String name, int rows, int cols, int flos, String alg) {
+		setChanged();
+		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos + " " + alg);
+	}
+
+	@Override
+	public void displayMaze(Maze3d maze3d) {
+		maze = maze3d;
+		mazeDisplayer.setMaze(maze);
 	}
 
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
-		
+		run();
 	}
-
-	@Override
-	public void display(String s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

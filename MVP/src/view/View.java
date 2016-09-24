@@ -5,6 +5,8 @@ package view;
 
 import java.util.Observable;
 
+import mazeGenerators.algorithms.Maze3d;
+
 /**
  * @author bensu
  *
@@ -12,6 +14,8 @@ import java.util.Observable;
 public interface View {
 	public void start();
 	public void display(String s);
-	void update(Observable o, Object arg);
+	
+	public void generateMaze(String name, int rows, int cols, int flos, String alg);
+	public void displayMaze(Maze3d maze3d);
 	
 }
