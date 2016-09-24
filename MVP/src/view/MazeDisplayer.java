@@ -38,26 +38,24 @@ public abstract class MazeDisplayer extends Canvas{
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-				//Position pos = curPosition;
 				switch (e.keyCode) {
 				case SWT.ARROW_RIGHT:					
 					moveRight();
 					redraw();
-					System.out.println("RIGHT");
 					break;
 				
-				case SWT.ARROW_LEFT:					
+				case SWT.ARROW_LEFT:
 					moveLeft();
 					redraw();
 					break;
 					
 				case SWT.ARROW_UP:					
-					moveForward();
+					moveBackward();
 					redraw();
 					break;
 				
 				case SWT.ARROW_DOWN:					
-					moveBackward();
+					moveForward();
 					redraw();
 					break;
 				
