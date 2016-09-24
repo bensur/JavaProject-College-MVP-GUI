@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import algorithms.search.Solution;
 import controller.Command;
-import controller.Controller;
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 import model.Model;

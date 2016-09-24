@@ -23,22 +23,22 @@ public class MazeWindow extends BasicWindow implements View{
 		this.maze = maze;
 	}
 	
-	private void randomWalk(MazeDisplayer maze){
-		Random r=new Random();
-		boolean b1,b2;
-		b1=r.nextBoolean();
-		b2=r.nextBoolean();
-		if(b1&&b2)
-			maze.moveUp();
-		if(b1&&!b2)
-			maze.moveDown();
-		if(!b1&&b2)
-			maze.moveRight();
-		if(!b1&&!b2)
-			maze.moveLeft();
-		
-		maze.redraw();
-	}
+//	private void randomWalk(MazeDisplayer maze){
+//		Random r=new Random();
+//		boolean b1,b2;
+//		b1=r.nextBoolean();
+//		b2=r.nextBoolean();
+//		if(b1&&b2)
+//			maze.moveUp();
+//		if(b1&&!b2)
+//			maze.moveDown();
+//		if(!b1&&b2)
+//			maze.moveRight();
+//		if(!b1&&!b2)
+//			maze.moveLeft();
+//		
+//		maze.redraw();
+//	}
 	
 	@Override
 	void initWidgets() {

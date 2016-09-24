@@ -4,8 +4,6 @@
 package view;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Observer;
@@ -32,29 +30,6 @@ public class MyView extends Observable implements View, Observer {
 	 */
 	public void start() {
 		cli.start();
-//		// Creates new thread using anonymous
-//				Thread t = new Thread()
-//			    {
-//			        public void run() {
-//			        	try {
-//			    			String cliInput;
-//			    			// Run as long as user did not entered 'exit'
-//			    			do {
-//			    				display("Please enter command");
-//			    				cliInput = in.readLine();
-//			    				// Split user input by ' '
-//			    				String[] arr = cliInput.split(" ");
-//			    				// Set commands as first argument
-//			    				setChanged();
-//			    				notifyObservers(arr);
-//			    			} while (!cliInput.equals("exit"));
-//			    		} catch (IOException e) {
-//			    			e.printStackTrace();
-//			    		}
-//			        }
-//			    }; 
-//			    // Start the thread
-//			    t.start();
 	}
 	
 	/**
