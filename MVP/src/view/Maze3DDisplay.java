@@ -28,13 +28,11 @@ public class Maze3DDisplay extends MazeDisplayer {
 		e.gc.fillPolygon(r);
 
 	}
-	public Maze3DDisplay(Composite parent, int style, Maze3d maze, Position curPosition) {
-		super(parent, style, maze, curPosition);
+	public Maze3DDisplay(Composite parent, int style, Maze3d maze, Position startPos) {
+		super(parent, style, maze, startPos);
 
 		final Color white=new Color(null, 255, 255, 255);
 		final Color black=new Color(null, 150,150,150);
-		final Color something=new Color(null, 255,10,10);
-		final Color something2=new Color(null, 50,50,50);
 		
 		setBackground(white);
 		addPaintListener(new PaintListener() {
@@ -45,7 +43,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 					curFloor = curPosition.getZ();
 					mazeData = maze.getCrossSectionByZ(curFloor);
 				}
-				
 				e.gc.setForeground(new Color(null,0,0,0));
 				e.gc.setBackground(new Color(null,0,0,0));
 
@@ -94,7 +91,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 
 	private void moveCharacter(Position pos){
 		if(maze.isValidPosition(pos)){
-			curPosition = pos;
+			this.curPosition = pos;
 			getDisplay().syncExec(new Runnable() {
 
 				@Override
