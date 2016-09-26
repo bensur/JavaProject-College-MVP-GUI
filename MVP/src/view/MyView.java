@@ -68,12 +68,6 @@ public class MyView extends Observable implements View, Observer {
 	}
 
 	@Override
-	public void solveMaze() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void displayHint(Solution<Position> solution) {
 		// TODO Auto-generated method stub
 		
@@ -81,6 +75,12 @@ public class MyView extends Observable implements View, Observer {
 
 	@Override
 	public void displaySolution(Solution<Position> solution) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void solveMaze(String method) {
 		// TODO Auto-generated method stub
 		
 	}

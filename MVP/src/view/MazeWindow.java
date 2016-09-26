@@ -17,7 +17,6 @@ public class MazeWindow extends BasicWindow implements View{
 	private View view = this;
 	private MazeDisplayer mazeDisplayer;
 	private String mazeName;
-	private Solution<Position> solution;
 	
 	public MazeWindow(String title, int width, int height, Maze3d maze) {
 		super(title, width, height);
@@ -67,7 +66,7 @@ public class MazeWindow extends BasicWindow implements View{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				//TODO
+				solveMaze("full_solution");
 			}
 			
 			@Override
@@ -78,9 +77,7 @@ public class MazeWindow extends BasicWindow implements View{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				
-				
-				//TODO
+				solveMaze("hint");
 			}
 			
 			@Override
@@ -113,7 +110,7 @@ public class MazeWindow extends BasicWindow implements View{
 	}
 	
 	@Override
-	public void solveMaze() {
+	public void solveMaze(String method) {
 		setChanged();
 		notifyObservers("solve " + mazeName + " DFS");
 	}
