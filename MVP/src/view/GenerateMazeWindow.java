@@ -52,12 +52,6 @@ public class GenerateMazeWindow extends DialogWindow {
 		Text txtFlos = new Text(shell, SWT.BORDER);
 		txtFlos.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
-		Label lblAlg = new Label(shell, SWT.NONE);
-		lblAlg.setText("Algorithm: ");
-		
-		Text txtAlg = new Text(shell, SWT.BORDER);
-		txtAlg.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		
 		Label lblName = new Label(shell, SWT.NONE);
 		lblName.setText("Name: ");
 		
