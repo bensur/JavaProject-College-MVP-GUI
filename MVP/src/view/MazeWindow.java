@@ -68,6 +68,8 @@ public class MazeWindow extends BasicWindow implements View{
 		        String[] filterExt = { "*.xml" };
 		        fd.setFilterExtensions(filterExt);
 		        String selected = fd.open();
+		        setChanged();
+		        notifyObservers("open_xml " + selected);
 		        System.out.println(selected); // TODO send to model
 			}
 			

@@ -23,7 +23,7 @@ public interface Model {
 	 */
 	public void display(String string);
 	
-	public void generateMaze(String name, int floors, int rows, int cols, String alg);
+	public void generateMaze(String name, int floors, int rows, int cols);
 
 	public void addMaze(String mazeName, Maze3d maze);
 
@@ -39,5 +39,7 @@ public interface Model {
 
 	void exit();
 
-	void solveMaze(String mazeName, String alg, String func);
+	void solveMaze(String mazeName, String method);
+
+	public void openXML(String file);
 }

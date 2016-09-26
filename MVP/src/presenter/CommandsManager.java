@@ -41,6 +41,7 @@ public class CommandsManager {
 		commands.put("maze_loaded", new MazeLoaded());
 		commands.put("maze_ready", new MazeReady());
 		commands.put("exit", new Exit());
+		commands.put("open_xml", new OpenXML());
 		return commands;
 	}
 	/**
@@ -204,14 +205,14 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String args[]) {
 			if ((args == null) || (args.length != 5))
-				view.display("generate_maze command need 5 arguments:\ngenerate_maze <MAZE_NAME> <FLOORS> <ROWS> <COLUMNS> <ALGORITHM>");
+				view.display("generate_maze command need 5 arguments:\ngenerate_maze <MAZE_NAME> <FLOORS> <ROWS> <COLUMNS>");
 			else {
 				this.mazeName = args[0];
 				this.floors = Integer.parseInt(args[1]);
 				this.rows = Integer.parseInt(args[2]);
 				this.columns = Integer.parseInt(args[3]);
 				this.alg = args[4];
-				model.generateMaze(mazeName, floors, rows, columns, alg);
+				model.generateMaze(mazeName, floors, rows, columns);
 			}
 		}
 	}
@@ -272,12 +273,12 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String args[]) {
 			if ((args == null) || (args.length != 3))
-				view.display("solve command need 3 arguments:\nsolve <MAZE_NAME> <ALGORITHM> <METHOD>");
+				view.display("solve command need 3 arguments:\nsolve <MAZE_NAME> <METHOD>");
 			else {
 				this.mazeName = args[0];
 				this.alg = args[1];
 				this.method = args[2];
-				model.solveMaze(mazeName, alg, method);
+				model.solveMaze(mazeName, method);
 			}
 		}
 	}
@@ -344,6 +345,21 @@ public class CommandsManager {
 		public void doCommand(String[] args) {
 			// TODO check input
 			view.displayMaze(model.getMazes().get(args[0]));
+		}
+	}
+	/**
+	 * 
+	 * @author Ben Surkiss & Yovel Shchori
+	 * TODO comment
+	 */
+	public class OpenXML implements Command {
+		/* (non-Javadoc)
+		 * @see presenter.Command#doCommand()
+		 */
+		@Override
+		public void doCommand(String[] args) {
+			// TODO check input
+			model.openXML(args[0]);
 		}
 	}
 	/**
