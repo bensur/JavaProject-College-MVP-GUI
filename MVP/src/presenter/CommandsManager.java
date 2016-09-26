@@ -198,20 +198,18 @@ public class CommandsManager {
 		private int floors;
 		private int rows;
 		private int columns;
-		private String alg;
 		/* (non-Javadoc)
 		 * @see controller.Command#doCommand()
 		 */
 		@Override
 		public void doCommand(String args[]) {
-			if ((args == null) || (args.length != 5))
-				view.display("generate_maze command need 5 arguments:\ngenerate_maze <MAZE_NAME> <FLOORS> <ROWS> <COLUMNS>");
+			if ((args == null) || (args.length != 4))
+				view.display("generate_maze command need 4 arguments:\ngenerate_maze <MAZE_NAME> <FLOORS> <ROWS> <COLUMNS>");
 			else {
 				this.mazeName = args[0];
 				this.floors = Integer.parseInt(args[1]);
 				this.rows = Integer.parseInt(args[2]);
 				this.columns = Integer.parseInt(args[3]);
-				this.alg = args[4];
 				model.generateMaze(mazeName, floors, rows, columns);
 			}
 		}
@@ -264,7 +262,6 @@ public class CommandsManager {
 	 */
 	public class SolveMaze implements Command {
 		private String mazeName;
-		private String alg;
 		private String method;
 		
 		/* (non-Javadoc)
@@ -272,11 +269,10 @@ public class CommandsManager {
 		 */
 		@Override
 		public void doCommand(String args[]) {
-			if ((args == null) || (args.length != 3))
-				view.display("solve command need 3 arguments:\nsolve <MAZE_NAME> <METHOD>");
+			if ((args == null) || (args.length != 2))
+				view.display("solve command need 2 arguments:\nsolve <MAZE_NAME> <METHOD>");
 			else {
 				this.mazeName = args[0];
-				this.alg = args[1];
 				this.method = args[2];
 				model.solveMaze(mazeName, method);
 			}
