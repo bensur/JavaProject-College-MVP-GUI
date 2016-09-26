@@ -108,7 +108,6 @@ public class MazeWindow extends BasicWindow implements View{
 			public void widgetSelected(SelectionEvent arg0) {
 				GenerateMazeWindow win = new GenerateMazeWindow(view);
 				win.start(display);
-				//TODO
 			}
 
 			@Override
@@ -119,7 +118,6 @@ public class MazeWindow extends BasicWindow implements View{
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				maze.setStartPosition(mazeDisplayer.curPosition);
 				solveMaze("full_solution");
 			}
 
@@ -131,7 +129,6 @@ public class MazeWindow extends BasicWindow implements View{
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				maze.setStartPosition(mazeDisplayer.curPosition);
 				solveMaze("hint");
 			}
 
@@ -164,7 +161,7 @@ public class MazeWindow extends BasicWindow implements View{
 
 	@Override
 	public void solveMaze(String method) {
-		//TODO change start position to cur position
+		maze.setStartPosition(mazeDisplayer.curPosition);
 		setChanged();
 		notifyObservers("solve " + mazeName + " DFS " + method);
 	}
