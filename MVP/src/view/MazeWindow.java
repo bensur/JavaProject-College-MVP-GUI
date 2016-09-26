@@ -111,6 +111,7 @@ public class MazeWindow extends BasicWindow implements View{
 	
 	@Override
 	public void solveMaze(String method) {
+		//TODO change start position to cur position
 		setChanged();
 		notifyObservers("solve " + mazeName + " DFS");
 	}
@@ -132,6 +133,7 @@ public class MazeWindow extends BasicWindow implements View{
 	@Override
 	public void displayHint(Solution<Position> solution) {
 		// TODO Auto-generated method stub
+		String direction = getDirection(mazeDisplayer.curPosition, solution.getSolution().get(1).getState());
 		
 	}
 
@@ -139,6 +141,28 @@ public class MazeWindow extends BasicWindow implements View{
 	public void displaySolution(Solution<Position> solution) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private String getDirection(Position p1, Position p2) {
+		if (p1.getX() == p2.getX() - 1) {
+			return "Left";
+		}
+		else if (p1.getX() == p2.getX() + 1) {
+			return "Right";
+		}
+		else if (p1.getY() == p2.getY() - 1) {
+			return "Up";
+		}
+		else if (p1.getY() == p2.getY() + 1) {
+			return "Down";
+		}
+		else if (p1.getZ() == p2.getZ() - 1) {
+			return "Above";
+		}
+		else if (p1.getZ() == p2.getZ() + 1) {
+			return "Below";
+		}
+		return null;
 	}
 	
 }
