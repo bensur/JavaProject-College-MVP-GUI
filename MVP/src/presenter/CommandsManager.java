@@ -264,18 +264,20 @@ public class CommandsManager {
 	public class SolveMaze implements Command {
 		private String mazeName;
 		private String alg;
+		private String method;
 		
 		/* (non-Javadoc)
 		 * @see presenter.Command#doCommand()
 		 */
 		@Override
 		public void doCommand(String args[]) {
-			if ((args == null) || (args.length != 2))
-				view.display("solve command need 2 arguments:\nsolve <MAZE_NAME> <ALGORITHM>");
+			if ((args == null) || (args.length != 3))
+				view.display("solve command need 3 arguments:\nsolve <MAZE_NAME> <ALGORITHM> <METHOD>");
 			else {
 				this.mazeName = args[0];
 				this.alg = args[1];
-				model.solveMaze(mazeName, alg);
+				this.method = args[2];
+				model.solveMaze(mazeName, alg, method);
 			}
 		}
 	}
@@ -307,7 +309,7 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args) {
 			// TODO check input
-			view.display(model.getSolutions().get(args[0]).toString());
+			view.display(model.getSolutions().get(args[0]), args[1]);
 		}
 	}
 	/**
