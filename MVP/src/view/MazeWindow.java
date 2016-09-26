@@ -24,7 +24,6 @@ public class MazeWindow extends BasicWindow implements View{
 	void initWidgets() {
 		shell.setLayout(new GridLayout(2,false));
 		
-		
 		//
 		Button generateMaze=new Button(shell, SWT.PUSH);
 		generateMaze.setText("Generate Maze");
@@ -33,6 +32,9 @@ public class MazeWindow extends BasicWindow implements View{
 		//
 		mazeDisplayer=new Maze3DDisplay(shell, SWT.BORDER, maze, maze.getStartPosition());
 		mazeDisplayer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true,1,3));
+		
+		setVisibleFalse(mazeDisplayer);
+
 		
 		Button solveMaze=new Button(shell, SWT.PUSH);
 		solveMaze.setText("Solve Maze");
@@ -80,9 +82,18 @@ public class MazeWindow extends BasicWindow implements View{
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
-		
+				
 	}
-
+	
+	private void setVisibleTrue(MazeDisplayer mazeDisplayer) {
+		mazeDisplayer.setVisible(true);
+		System.out.println(mazeDisplayer.isVisible());
+	}
+	private void setVisibleFalse(MazeDisplayer mazeDisplayer) {
+		mazeDisplayer.setVisible(false);
+		System.out.println(mazeDisplayer.isVisible());
+	}
+	
 	@Override
 	public void display(String s) {
 		// TODO Auto-generated method stub
@@ -91,6 +102,7 @@ public class MazeWindow extends BasicWindow implements View{
 
 	@Override
 	public void generateMaze(String name, int rows, int cols, int flos, String alg) {
+		setVisibleTrue(mazeDisplayer);
 		setChanged();
 		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos + " " + alg);
 	}
