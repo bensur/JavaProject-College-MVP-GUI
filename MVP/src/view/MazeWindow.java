@@ -2,6 +2,8 @@ package view;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -90,17 +92,15 @@ public class MazeWindow extends BasicWindow implements View{
 		mazeDisplayer=new Maze3DDisplay(shell, SWT.BORDER, maze, maze.getStartPosition());
 		mazeDisplayer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true,1,3));
 
-		//		setVisibleFalse(mazeDisplayer);
-
-
 		Button solveMaze=new Button(shell, SWT.PUSH);
 		solveMaze.setText("Solve Maze");
 		solveMaze.setLayoutData(new GridData(SWT.FILL, SWT.None, false, false, 1, 1));
+		solveMaze.setEnabled(false);
 
 		Button getHint=new Button(shell, SWT.PUSH);
 		getHint.setText("Get Hint");
 		getHint.setLayoutData(new GridData(SWT.FILL, SWT.None, false, false, 1, 1));
-
+		getHint.setEnabled(false);
 
 		//
 		generateMaze.addSelectionListener(new SelectionListener() {
@@ -108,6 +108,8 @@ public class MazeWindow extends BasicWindow implements View{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				GenerateMazeWindow win = new GenerateMazeWindow(view);
+				solveMaze.setEnabled(true);
+				getHint.setEnabled(true);
 				win.start(display);
 			}
 
@@ -139,13 +141,6 @@ public class MazeWindow extends BasicWindow implements View{
 
 	}
 
-	private void setVisibleTrue(MazeDisplayer mazeDisplayer) {
-		mazeDisplayer.setVisible(true);
-	}
-	private void setVisibleFalse(MazeDisplayer mazeDisplayer) {
-		mazeDisplayer.setVisible(false);
-	}
-
 	@Override
 	public void display(String s) {
 		// TODO Auto-generated method stub
@@ -154,7 +149,6 @@ public class MazeWindow extends BasicWindow implements View{
 
 	@Override
 	public void generateMaze(String name, int rows, int cols, int flos) {
-		//		setVisibleTrue(mazeDisplayer);
 		mazeName = name;
 		setChanged();
 		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos);
@@ -183,12 +177,7 @@ public class MazeWindow extends BasicWindow implements View{
 	@Override
 	public void displayHint(Solution<Position> solution) {
 		String direction = getDirection(mazeDisplayer.curPosition, solution.getSolution().get(1).getState());
-		System.out.println("Move " + direction); //TODO: show in message box
-		//		MessageBox msg = new MessageBox(shell, SWT.OK);
-		//		msg.setText("Hint");
-		//		msg.setMessage("Move " + direction + " :)");
-		//		msg.open();
-		
+		JOptionPane.showMessageDialog(null,"Move " + direction);	
 	}
 
 	@Override

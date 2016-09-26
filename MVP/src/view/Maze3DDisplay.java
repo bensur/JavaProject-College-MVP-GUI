@@ -1,13 +1,7 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Random;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
@@ -26,6 +20,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 	 * @param e
 	 */
 	private void paintCube(double[] p, double h, PaintEvent e){
+		
 		int[] f=new int[p.length];
 		for(int k=0;k<f.length;f[k]=(int)Math.round(p[k]),k++);
 
@@ -131,7 +126,8 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (this.maze.isValidPosition(pos)) {
 			this.curPosition = pos;
 			if (pos.equals(maze.getGoalPosition())) {
-				System.out.println("WINNER!!!!!!!!!!!!!!!!");
+                //ImageIcon icon = new ImageIcon(Maze3DDisplay.class.getResource("/Users/yschori/Desktop/cat.jpeg"));
+				JOptionPane.showMessageDialog(null, "WINNER!!!!!!!!!!!!!!!!");
 			}		
 			
 			getDisplay().syncExec(new Runnable() {
@@ -212,4 +208,10 @@ public class Maze3DDisplay extends MazeDisplayer {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
 	}
+	
+	
+	
+	
+	
+	
 }
