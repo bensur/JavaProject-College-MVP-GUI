@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.MessageBox;
 
 import algorithms.search.Solution;
 import algorithms.search.State;
@@ -187,6 +188,7 @@ public class MazeWindow extends BasicWindow implements View{
 		//		msg.setText("Hint");
 		//		msg.setMessage("Move " + direction + " :)");
 		//		msg.open();
+		
 	}
 
 	@Override
