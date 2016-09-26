@@ -152,18 +152,18 @@ public class MazeWindow extends BasicWindow implements View{
 	}
 
 	@Override
-	public void generateMaze(String name, int rows, int cols, int flos, String alg) {
+	public void generateMaze(String name, int rows, int cols, int flos) {
 		//		setVisibleTrue(mazeDisplayer);
 		mazeName = name;
 		setChanged();
-		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos + " " + alg);
+		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos);
 	}
 
 	@Override
 	public void solveMaze(String method) {
 		maze.setStartPosition(mazeDisplayer.curPosition);
 		setChanged();
-		notifyObservers("solve " + mazeName + " DFS " + method);
+		notifyObservers("solve " + mazeName + " " + method);
 	}
 
 

@@ -231,9 +231,11 @@ public class MyModel extends Observable implements Model {
 			Properties loadedProperties = (Properties)decoder.readObject();
 			decoder.close();
 			Properties globalProperties = PropertiesLoader.getInstance().getProperties();
-			globalProperties.setGenerateMazeAlgorithm(loadedProperties.getGenerateMazeAlgorithm());
 			globalProperties.setNumOfThreads(loadedProperties.getNumOfThreads());
+			globalProperties.setGenerateMazeAlgorithm(loadedProperties.getGenerateMazeAlgorithm());
+			this.generateAlg = loadedProperties.getGenerateMazeAlgorithm();
 			globalProperties.setSolveMazeAlgorithm(loadedProperties.getSolveMazeAlgorithm());
+			this.solveAlg = loadedProperties.getSolveMazeAlgorithm();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

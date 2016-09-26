@@ -80,12 +80,11 @@ public class GenerateMazeWindow extends DialogWindow {
 				int cols = Integer.parseInt(txtCols.getText());
 				int flos = Integer.parseInt(txtFlos.getText());
 				String name = txtName.getText();
-				String alg = txtAlg.getText();
 
-				msg.setMessage("Generating maze: " + name + " with rows: " + rows + " cols: " + cols + " floors: " + flos + " using algorithm: " + alg);				
+				msg.setMessage("Generating maze: " + name + " with rows: " + rows + " cols: " + cols + " floors: " + flos);				
 				msg.open();
 				
-				view.generateMaze(name, rows, cols, flos, alg);
+				view.generateMaze(name, rows, cols, flos);
 				
 				shell.close();
 			}
