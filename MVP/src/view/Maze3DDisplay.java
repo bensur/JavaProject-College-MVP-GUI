@@ -1,5 +1,14 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
@@ -121,9 +130,10 @@ public class Maze3DDisplay extends MazeDisplayer {
 	private void moveCharacter(Position pos) {
 		if (this.maze.isValidPosition(pos)) {
 			this.curPosition = pos;
-//			if (pos.equals(maze.getGoalPosition())) {
-//				System.out.println("WINNER!!!!!!!!!!!!!!!!");
-//			}
+			if (pos.equals(maze.getGoalPosition())) {
+				System.out.println("WINNER!!!!!!!!!!!!!!!!");
+			}		
+			
 			getDisplay().syncExec(new Runnable() {
 				@Override
 				public void run() {
