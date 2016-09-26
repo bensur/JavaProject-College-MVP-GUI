@@ -82,13 +82,13 @@ public class Maze3DDisplay extends MazeDisplayer {
 							e.gc.setBackground(black);				        	  
 						}
 						// Add start image to start position TODO - fix positioning
-						if ((i == startPos.getX()) && (j == startPos.getX()) &&(curFloor == startPos.getZ())) {
+						if ((i == startPos.getX()) && (j == startPos.getX()) && (curFloor == startPos.getZ())) {
 							e.gc.drawImage(startImage, 0, 0, startImage.getBounds().width, startImage.getBounds().height, 
 									       (int)Math.round(dpoints[0]), (int)Math.round(dpoints[1]-cheight/2), 
 									       (int)Math.round((w0+w1)/2), (int)Math.round(h));
 						}
 						// Add end image to end position TODO - fix positioning
-						if ((i == endPos.getX()) && (j == endPos.getX()) &&(curFloor == endPos.getZ())) {
+						if ((i == endPos.getX()) && (j == endPos.getX()) && (curFloor == endPos.getZ())) {
 							e.gc.drawImage(endImage, 0, 0, endImage.getBounds().width, endImage.getBounds().height, 
 								           (int)Math.round(dpoints[0]), (int)Math.round(dpoints[1]-cheight/2), 
 								           (int)Math.round((w0+w1)/2), (int)Math.round(h));
