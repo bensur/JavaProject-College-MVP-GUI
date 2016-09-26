@@ -121,6 +121,9 @@ public class Maze3DDisplay extends MazeDisplayer {
 	private void moveCharacter(Position pos) {
 		if (this.maze.isValidPosition(pos)) {
 			this.curPosition = pos;
+//			if (pos.equals(maze.getGoalPosition())) {
+//				System.out.println("WINNER!!!!!!!!!!!!!!!!");
+//			}
 			getDisplay().syncExec(new Runnable() {
 				@Override
 				public void run() {

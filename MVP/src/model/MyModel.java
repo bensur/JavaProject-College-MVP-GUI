@@ -60,7 +60,6 @@ public class MyModel extends Observable implements Model {
 	
 	@Override
 	public void generateMaze(String name, int floors, int rows, int cols, String alg) {
-		System.out.println("Got new generate_maze request (model)");
 		executor.submit(new Callable<Maze3d>() { //TODO return Future<V>
 
 			@Override
@@ -179,7 +178,7 @@ public class MyModel extends Observable implements Model {
 				solutions.put(mazeName, sol);
 				solutionsForMazes.put(mazes.get(mazeName), sol);
 				setChanged();
-				notifyObservers("solution_ready_for " + mazeName + method);	
+				notifyObservers("solution_ready_for " + mazeName + " " + method);	
 				
 				return sol;				
 			}	
