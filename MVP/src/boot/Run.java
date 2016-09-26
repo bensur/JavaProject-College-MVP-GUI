@@ -3,16 +3,20 @@
  */
 package boot;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import mazeGenerators.algorithms.GrowingTreeGenerator;
 import mazeGenerators.algorithms.randomCellChooser;
 import model.MyModel;
 import presenter.Presenter;
+import presenter.Properties;
+import presenter.PropertiesLoader;
 import view.MazeWindow;
-import view.MyView;
 
 /**
  * @author yschori
@@ -26,6 +30,24 @@ public class Run {
 	public static void main(String[] args) {
 //		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 //		PrintWriter out = new PrintWriter(System.out);
+		
+		Properties properties = new Properties();
+		properties.setGenerateMazeAlgorithm("GrowingTreeRand");
+		properties.setSolveMazeAlgorithm("DFS");
+		properties.setNumOfThreads(3);
+		
+		try {
+			XMLEncoder os = new XMLEncoder(new FileOutputStream("properties.xml"));
+			os.writeObject(properties);
+			os.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Properties properties2 = PropertiesLoader.getInstance().getProperties();
+				
+		
 		MazeWindow view=new MazeWindow("maze example", 500, 300, new GrowingTreeGenerator(new randomCellChooser()).generate(5, 5, 5));		
 //		MyView view = new MyView(in, out);
 		MyModel model = new MyModel();

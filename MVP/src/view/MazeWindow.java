@@ -117,6 +117,7 @@ public class MazeWindow extends BasicWindow implements View{
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				maze.setStartPosition(mazeDisplayer.curPosition);
 				solveMaze("full_solution");
 			}
 
@@ -128,6 +129,7 @@ public class MazeWindow extends BasicWindow implements View{
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				maze.setStartPosition(mazeDisplayer.curPosition);
 				solveMaze("hint");
 			}
 
