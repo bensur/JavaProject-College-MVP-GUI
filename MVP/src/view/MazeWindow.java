@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -8,6 +10,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 
 import algorithms.search.Solution;
+import algorithms.search.State;
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 
@@ -88,11 +91,9 @@ public class MazeWindow extends BasicWindow implements View{
 	
 	private void setVisibleTrue(MazeDisplayer mazeDisplayer) {
 		mazeDisplayer.setVisible(true);
-		System.out.println(mazeDisplayer.isVisible());
 	}
 	private void setVisibleFalse(MazeDisplayer mazeDisplayer) {
 		mazeDisplayer.setVisible(false);
-		System.out.println(mazeDisplayer.isVisible());
 	}
 	
 	@Override
@@ -113,13 +114,12 @@ public class MazeWindow extends BasicWindow implements View{
 	public void solveMaze(String method) {
 		//TODO change start position to cur position
 		setChanged();
-		notifyObservers("solve " + mazeName + " DFS");
+		notifyObservers("solve " + mazeName + " DFS " + method);
 	}
 	
 
 	@Override
 	public void displayMaze(Maze3d maze3d) {
-		System.out.println("Got new maze to display");
 		maze = maze3d;
 		mazeDisplayer.setMaze(maze);
 	}
@@ -139,28 +139,51 @@ public class MazeWindow extends BasicWindow implements View{
 
 	@Override
 	public void displaySolution(Solution<Position> solution) {
-		// TODO Auto-generated method stub
-		
+		List<State<Position>> solutionList = solution.getSolution();
+		for (int i = 0 ; i < solutionList.size() - 1 ; i++) {
+			switch (getDirection(solutionList.get(i).getState(), solutionList.get(i+1).getState())) {
+			case "Left":
+				mazeDisplayer.moveLeft();
+				break;
+			case "Right":
+				mazeDisplayer.moveRight();
+				break;
+			case "Up":
+				mazeDisplayer.moveBackward();
+				break;
+			case "Down":
+				mazeDisplayer.moveForward();
+				break;
+			case "Above":
+				mazeDisplayer.moveUp();
+				break;
+			case "Below":
+				mazeDisplayer.moveDown();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 	
 	private String getDirection(Position p1, Position p2) {
 		if (p1.getX() == p2.getX() - 1) {
-			return "Left";
-		}
-		else if (p1.getX() == p2.getX() + 1) {
-			return "Right";
-		}
-		else if (p1.getY() == p2.getY() - 1) {
-			return "Up";
-		}
-		else if (p1.getY() == p2.getY() + 1) {
 			return "Down";
 		}
-		else if (p1.getZ() == p2.getZ() - 1) {
-			return "Above";
+		else if (p1.getX() == p2.getX() + 1) {
+			return "Up";
+		}
+		else if (p1.getY() == p2.getY() - 1) {
+			return "Right";
+		}
+		else if (p1.getY() == p2.getY() + 1) {
+			return "Left";
 		}
 		else if (p1.getZ() == p2.getZ() + 1) {
 			return "Below";
+		}
+		else if (p1.getZ() == p2.getZ() - 1) {
+			return "Above";
 		}
 		return null;
 	}
