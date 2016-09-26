@@ -10,8 +10,13 @@ import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 
 public class Maze3DDisplay extends MazeDisplayer {
-
-	private void paintCube(double[] p,double h,PaintEvent e){
+	/**
+	 * 
+	 * @param p
+	 * @param h
+	 * @param e
+	 */
+	private void paintCube(double[] p, double h, PaintEvent e){
 		int[] f=new int[p.length];
 		for(int k=0;k<f.length;f[k]=(int)Math.round(p[k]),k++);
 
@@ -29,6 +34,13 @@ public class Maze3DDisplay extends MazeDisplayer {
 		e.gc.fillPolygon(r);
 
 	}
+	/**
+	 * 
+	 * @param parent
+	 * @param style
+	 * @param maze3d
+	 * @param startPos
+	 */
 	public Maze3DDisplay(Composite parent, int style, Maze3d maze3d, Position startPos) {
 		super(parent, style, maze3d, startPos);
 
