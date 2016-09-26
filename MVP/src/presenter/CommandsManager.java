@@ -273,7 +273,7 @@ public class CommandsManager {
 				view.display("solve command need 2 arguments:\nsolve <MAZE_NAME> <METHOD>");
 			else {
 				this.mazeName = args[0];
-				this.method = args[2];
+				this.method = args[1];
 				model.solveMaze(mazeName, method);
 			}
 		}
