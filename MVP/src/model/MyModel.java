@@ -213,7 +213,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void exit() {
 		try {
-			executor.awaitTermination(60, TimeUnit.SECONDS);
+			executor.awaitTermination(3, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
