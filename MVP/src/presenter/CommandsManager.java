@@ -309,7 +309,13 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args) {
 			// TODO check input
-			view.display(model.getSolutions().get(args[0]), args[1]);
+			if (args[1].equals("hint")) {
+				view.displayHint(model.getSolutions().get(args[0]));
+			}
+			else {
+				view.displaySolution(model.getSolutions().get(args[0]));
+			}
+			//view.display(model.getSolutions().get(args[0]), args[1]);
 		}
 	}
 	/**

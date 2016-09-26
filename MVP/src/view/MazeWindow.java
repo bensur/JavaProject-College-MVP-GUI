@@ -7,13 +7,17 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 
+import algorithms.search.Solution;
 import mazeGenerators.algorithms.Maze3d;
+import mazeGenerators.algorithms.Position;
 
 public class MazeWindow extends BasicWindow implements View{
 
-	Maze3d maze;
-	View view = this;
-	MazeDisplayer mazeDisplayer;
+	private Maze3d maze;
+	private View view = this;
+	private MazeDisplayer mazeDisplayer;
+	private String mazeName;
+	private Solution<Position> solution;
 	
 	public MazeWindow(String title, int width, int height, Maze3d maze) {
 		super(title, width, height);
@@ -103,9 +107,17 @@ public class MazeWindow extends BasicWindow implements View{
 	@Override
 	public void generateMaze(String name, int rows, int cols, int flos, String alg) {
 		setVisibleTrue(mazeDisplayer);
+		mazeName = name;
 		setChanged();
 		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos + " " + alg);
 	}
+	
+	@Override
+	public void solveMaze() {
+		setChanged();
+		notifyObservers("solve " + mazeName + " DFS");
+	}
+	
 
 	@Override
 	public void displayMaze(Maze3d maze3d) {
@@ -118,6 +130,18 @@ public class MazeWindow extends BasicWindow implements View{
 	public void start() {
 		// TODO Auto-generated method stub
 		run();
+	}
+
+	@Override
+	public void displayHint(Solution<Position> solution) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displaySolution(Solution<Position> solution) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

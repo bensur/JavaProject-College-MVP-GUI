@@ -39,6 +39,7 @@ import mazeGenerators.algorithms.randomCellChooser;
 public class MyModel extends Observable implements Model {
 	private HashMap<String, Maze3d> mazes = new HashMap<String, Maze3d>();
 	private HashMap<String, Solution<Position>> solutions = new HashMap<String, Solution<Position>>();
+	private HashMap<Maze3d, Solution<Position>> solutionsForMazes = new HashMap<Maze3d, Solution<Position>>();
 	private ExecutorService executor = Executors.newCachedThreadPool();
 	
 //	public MyModel() {
@@ -157,7 +158,7 @@ public class MyModel extends Observable implements Model {
 	}
 	
 	@Override
-	public void solveMaze(String mazeName, String alg) {
+	public void solveMaze(String mazeName, String alg, String method) {
 		Future<Solution<Position>> fSolution = executor.submit(new Callable<Solution<Position>>() { //TODO return Future<V>
 
 			@Override
@@ -175,10 +176,11 @@ public class MyModel extends Observable implements Model {
 				}
 				Solution<Position> sol = search.search(new SearchableMaze3d(mazes.get(mazeName)));
 				
-				setChanged();
-				notifyObservers("solution_ready_for " + mazeName);	
-				
 				solutions.put(mazeName, sol);
+				solutionsForMazes.put(mazes.get(mazeName), sol);
+				setChanged();
+				notifyObservers("solution_ready_for " + mazeName + method);	
+				
 				return sol;				
 			}	
 		});

@@ -29,8 +29,6 @@ public interface Model {
 
 	public void addMazeSolution(String mazeName, Solution<Position> solution);
 
-	void solveMaze(String mazeName, String alg);
-
 	void saveMaze(String mazeName, String fileName);
 
 	void loadMaze(String mazeName, String fileName);
@@ -40,4 +38,6 @@ public interface Model {
 	HashMap<String, Solution<Position>> getSolutions();
 
 	void exit();
+
+	void solveMaze(String mazeName, String alg, String func);
 }

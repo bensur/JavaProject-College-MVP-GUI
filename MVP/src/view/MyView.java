@@ -8,7 +8,9 @@ import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Observer;
 
+import algorithms.search.Solution;
 import mazeGenerators.algorithms.Maze3d;
+import mazeGenerators.algorithms.Position;
 
 /**
  * @author Ben Surkiss & Yovel Shchori
@@ -61,6 +63,24 @@ public class MyView extends Observable implements View, Observer {
 
 	@Override
 	public void displayMaze(Maze3d maze3d) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void solveMaze() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayHint(Solution<Position> solution) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displaySolution(Solution<Position> solution) {
 		// TODO Auto-generated method stub
 		
 	}
