@@ -17,6 +17,7 @@ import view.View;
  */
 public class Presenter implements Observer {
 	private View view;
+	@SuppressWarnings("unused") // Used in commandsManager
 	private Model model;
 	private CommandsManager commandsManager;
 	private HashMap<String, Command> commands;

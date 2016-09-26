@@ -15,6 +15,7 @@ import mazeGenerators.algorithms.Maze3d;
  *
  */
 public class MyView extends Observable implements View, Observer {
+	@SuppressWarnings("unused") //Used in CLI
 	private BufferedReader in;
 	private PrintWriter out;
 	private CLI cli;
