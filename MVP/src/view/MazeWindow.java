@@ -40,7 +40,7 @@ public class MazeWindow extends BasicWindow implements View{
 		mazeDisplayer=new Maze3DDisplay(shell, SWT.BORDER, maze, maze.getStartPosition());
 		mazeDisplayer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true,1,3));
 		
-		setVisibleFalse(mazeDisplayer);
+//		setVisibleFalse(mazeDisplayer);
 
 		
 		Button solveMaze=new Button(shell, SWT.PUSH);
@@ -105,7 +105,7 @@ public class MazeWindow extends BasicWindow implements View{
 
 	@Override
 	public void generateMaze(String name, int rows, int cols, int flos, String alg) {
-		setVisibleTrue(mazeDisplayer);
+//		setVisibleTrue(mazeDisplayer);
 		mazeName = name;
 		setChanged();
 		notifyObservers("generate_maze " + name + " " + rows + " " + cols + " " + flos + " " + alg);
