@@ -126,15 +126,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (this.maze.isValidPosition(pos)) {
 			this.curPosition = pos;
 			if (pos.equals(maze.getGoalPosition())) {
-				
-//				Shell shell = new Shell(getDisplay());
-//			    shell.setText("Win");
-//			    shell.setSize(450, 430);
-//			    
-//			    Image img= new Image(getDisplay(),"happy_cat.png");
-//			    shell.setBackgroundImage(img);
-//			    
-//			    shell.open();
+
 				//JOptionPane.showMessageDialog(null, "WINNER!!!!!!!!!!!!!!!!");
 				popUpWinner();
 				
@@ -220,6 +212,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 	}
 	@Override
 	public void popUpWinner() {
+		System.out.println("winner!!!");
 		Shell shell = new Shell(getDisplay());
 	    shell.setText("Win");
 	    shell.setSize(450, 430);
@@ -233,6 +226,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 	}
 	
 	public void popUpHint(String str) {
+		
 		Shell shell = new Shell(getDisplay());
 	    shell.setText("Hint");
 	    shell.setSize(450, 430);
@@ -246,12 +240,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 	    
 	    shell.open();
 	    
-	    while (!shell.isDisposed()) {
-	        if (!getDisplay().readAndDispatch())
-	        	getDisplay().sleep();
-	      }
-	    getDisplay().dispose();
-		
+	    System.out.println(str);
 	}
 	
 }

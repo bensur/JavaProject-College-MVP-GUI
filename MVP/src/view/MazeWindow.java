@@ -177,7 +177,8 @@ public class MazeWindow extends BasicWindow implements View{
 	@Override
 	public void displayHint(Solution<Position> solution) {
 		String direction = getDirection(mazeDisplayer.curPosition, solution.getSolution().get(1).getState());
-		JOptionPane.showMessageDialog(null,"Move " + direction);	
+		mazeDisplayer.popUpHint("Move " + direction);
+		//JOptionPane.showMessageDialog(null,"Move " + direction);	
 	}
 
 	@Override
