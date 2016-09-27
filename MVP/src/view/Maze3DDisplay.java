@@ -1,13 +1,13 @@
 package view;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
@@ -126,8 +126,18 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (this.maze.isValidPosition(pos)) {
 			this.curPosition = pos;
 			if (pos.equals(maze.getGoalPosition())) {
-                //ImageIcon icon = new ImageIcon(Maze3DDisplay.class.getResource("/Users/yschori/Desktop/cat.jpeg"));
-				JOptionPane.showMessageDialog(null, "WINNER!!!!!!!!!!!!!!!!");
+				
+//				Shell shell = new Shell(getDisplay());
+//			    shell.setText("Win");
+//			    shell.setSize(450, 430);
+//			    
+//			    Image img= new Image(getDisplay(),"happy_cat.png");
+//			    shell.setBackgroundImage(img);
+//			    
+//			    shell.open();
+				//JOptionPane.showMessageDialog(null, "WINNER!!!!!!!!!!!!!!!!");
+				popUpWinner();
+				
 			}		
 			
 			getDisplay().syncExec(new Runnable() {
@@ -208,10 +218,40 @@ public class Maze3DDisplay extends MazeDisplayer {
 			moveCharacter(p);
 		} //TODO maybe return error msg (?)
 	}
+	@Override
+	public void popUpWinner() {
+		Shell shell = new Shell(getDisplay());
+	    shell.setText("Win");
+	    shell.setSize(450, 430);
+	    
+	    Image img= new Image(getDisplay(),"happy_cat.png");
+	    shell.setBackgroundImage(img);
+	    
+	    shell.open();
+		
+
+	}
 	
-	
-	
-	
-	
+	public void popUpHint(String str) {
+		Shell shell = new Shell(getDisplay());
+	    shell.setText("Hint");
+	    shell.setSize(450, 430);
+	    
+	    Image img= new Image(getDisplay(),"grumpy_cat.jpg");
+	    shell.setBackgroundImage(img);
+	    
+	    final Label label = new Label(shell, SWT.NONE);
+	    label.setText(str);
+	    label.setBounds(100, 150, 100, 150);
+	    
+	    shell.open();
+	    
+	    while (!shell.isDisposed()) {
+	        if (!getDisplay().readAndDispatch())
+	        	getDisplay().sleep();
+	      }
+	    getDisplay().dispose();
+		
+	}
 	
 }

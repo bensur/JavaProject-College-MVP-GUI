@@ -102,4 +102,8 @@ public abstract class MazeDisplayer extends Canvas{
 	
 	public  abstract void moveBackward();
 	
+	public abstract void popUpWinner();
+	
+	public abstract void popUpHint(String str);
+	
 }
