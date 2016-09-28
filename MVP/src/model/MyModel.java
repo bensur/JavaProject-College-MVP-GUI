@@ -43,7 +43,7 @@ public class MyModel extends Observable implements Model {
 	String generateAlg = PropertiesLoader.getInstance().getProperties().getGenerateMazeAlgorithm();
 	String solveAlg = PropertiesLoader.getInstance().getProperties().getSolveMazeAlgorithm();
 	private HashMap<String, Maze3d> mazes = new HashMap<String, Maze3d>();
-	private HashMap<String, Solution<Position>> solutions = new HashMap<String, Solution<Position>>();
+//	private HashMap<String, Solution<Position>> solutions = new HashMap<String, Solution<Position>>();
 	private HashMap<Maze3d, Solution<Position>> solutionsForMazes = new HashMap<Maze3d, Solution<Position>>();
 	private ExecutorService executor = Executors.newFixedThreadPool(PropertiesLoader.getInstance().getProperties().getNumOfThreads());
 
@@ -58,10 +58,10 @@ public class MyModel extends Observable implements Model {
 		return this.mazes;
 	}
 
-	@Override
-	public HashMap<String, Solution<Position>> getSolutions() {
-		return this.solutions;
-	}
+//	@Override
+//	public HashMap<String, Solution<Position>> getSolutions() {
+//		return this.solutions;
+//	}
 
 	@Override
 	public void generateMaze(String name, int floors, int rows, int cols) {
@@ -167,6 +167,12 @@ public class MyModel extends Observable implements Model {
 
 			@Override
 			public Solution<Position> call() throws Exception {
+				System.out.println("Got solve request for " + mazeName + " and method " + method);
+				if ((mazes.containsKey(mazeName)) && (solutionsForMazes.containsKey(mazes.get(mazeName)))) {
+					setChanged();
+					notifyObservers("solution_ready_for " + mazeName + " " + method);
+					return solutionsForMazes.get(mazes.get(mazeName));
+				}
 				Searcher<Position> search;
 				switch (solveAlg) {
 				case "BFS":
@@ -180,7 +186,7 @@ public class MyModel extends Observable implements Model {
 				}
 				Solution<Position> sol = search.search(new SearchableMaze3d(mazes.get(mazeName)));
 
-				solutions.put(mazeName, sol);
+//				solutions.put(mazeName, sol);
 				solutionsForMazes.put(mazes.get(mazeName), sol);
 				setChanged();
 				notifyObservers("solution_ready_for " + mazeName + " " + method);	
@@ -209,10 +215,10 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void addMazeSolution(String mazeName, Solution<Position> solution) {
-		if (solutions.containsKey(mazeName))
+		if (solutionsForMazes.containsKey(mazes.get(mazeName)))
 			display("Solution for maze " + mazeName + " already exist!");
 		else
-			solutions.put(mazeName, solution);
+			solutionsForMazes.put(mazes.get(mazeName), solution);
 	}
 
 	@Override
@@ -238,6 +244,16 @@ public class MyModel extends Observable implements Model {
 			this.solveAlg = loadedProperties.getSolveMazeAlgorithm();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Solution<Position> getSolution(Maze3d maze) {
+		if (solutionsForMazes.containsKey(maze)) {
+			return solutionsForMazes.get(maze);
+		}
+		else {
+			return null;
 		}
 	}
 }

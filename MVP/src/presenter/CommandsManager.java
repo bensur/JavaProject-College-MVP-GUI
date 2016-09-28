@@ -153,7 +153,7 @@ public class CommandsManager {
 	
 	public class DisplaySolution implements Command {
 		String mazeName;
-		HashMap<String, Solution<Position>> solutions;
+//		HashMap<String, Solution<Position>> solutions;
 		/* (non-Javadoc)
 		 * @see controller.Command#doCommand()
 		 */
@@ -163,9 +163,9 @@ public class CommandsManager {
 				view.display("display_solution command need 1 argument:\ndisplay_solution <MAZE_NAME>");
 			else {
 				this.mazeName = args[0];
-				this.solutions = model.getSolutions();
-				Solution<Position> sol = solutions.get(mazeName);
-				if (solutions.containsKey(mazeName)) {
+//				this.solutions = model.getSolutions();
+				Solution<Position> sol = model.getSolution(model.getMazes().get(mazeName));
+				if (sol != null) {
 					view.display(sol.toString());
 				}
 				else {
@@ -307,10 +307,10 @@ public class CommandsManager {
 		public void doCommand(String[] args) {
 			// TODO check input
 			if (args[1].equals("hint")) {
-				view.displayHint(model.getSolutions().get(args[0]));
+				view.displayHint(model.getSolution(model.getMazes().get(args[0])));
 			}
 			else {
-				view.displaySolution(model.getSolutions().get(args[0]));
+				view.displaySolution(model.getSolution(model.getMazes().get(args[0])));
 			}
 			//view.display(model.getSolutions().get(args[0]), args[1]);
 		}

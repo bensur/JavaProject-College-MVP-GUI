@@ -35,11 +35,13 @@ public interface Model {
 
 	HashMap<String, Maze3d> getMazes();
 
-	HashMap<String, Solution<Position>> getSolutions();
+//	HashMap<String, Solution<Position>> getSolutions();
 
 	void exit();
 
 	void solveMaze(String mazeName, String method);
 
 	public void openXML(String file);
+
+	public Solution<Position> getSolution(Maze3d maze);
 }
