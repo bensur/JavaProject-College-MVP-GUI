@@ -6,8 +6,11 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.ietf.jgss.MessageProp;
 
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
@@ -127,7 +130,11 @@ public class Maze3DDisplay extends MazeDisplayer {
 			this.curPosition = pos;
 			if (pos.equals(maze.getGoalPosition())) {
 
-				//JOptionPane.showMessageDialog(null, "WINNER!!!!!!!!!!!!!!!!");
+				Display.getDefault().syncExec(new Runnable() {
+				    public void run() {
+				    	popUpWinner();
+				    }
+				});
 				popUpWinner();
 				
 			}		
@@ -227,18 +234,59 @@ public class Maze3DDisplay extends MazeDisplayer {
 	
 	public void popUpHint(String str) {
 		
-		Shell shell = new Shell(getDisplay());
-	    shell.setText("Hint");
-	    shell.setSize(450, 430);
-	    
-	    Image img= new Image(getDisplay(),"grumpy_cat.jpg");
-	    shell.setBackgroundImage(img);
-	    
-	    final Label label = new Label(shell, SWT.NONE);
-	    label.setText(str);
-	    label.setBounds(100, 150, 100, 150);
-	    
-	    shell.open();
+		DialogWindow dw = new DialogWindow() {
+
+			@Override
+			protected void initWidgets() {
+				shell.setText("Hint");
+			    shell.setSize(380, 380);
+			    
+			    
+			    Image img= new Image(getDisplay(),"grumpy2.jpg");
+			    shell.setBackgroundImage(img);
+			    
+			    final Label label = new Label(shell, SWT.NONE);
+			    label.setText(str);
+			    //label.setBounds(100, 150, 100, 150);
+			    label.setBounds(160, 0, 1000, 1000);
+
+			    
+			    shell.open();
+				
+			}
+		};
+		Display display = Display.getDefault();
+		dw.start(display);
+		
+		
+		System.out.println(str);
+//		// create a dialog with ok and cancel buttons and a question icon
+//		
+//		MessageBox dialog =
+//		        new MessageBox(getShell(), SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+//		dialog.setText("My info");
+//		dialog.setMessage("Do you really want to do this?");
+//
+//		// open dialog and await user selection
+//		dialog.open();
+		
+		
+//		Display display = Display.getDefault();
+//		if (display == null)
+//	         display = Display.getDefault();
+//		Shell shell = new Shell(display, SWT.APPLICATION_MODAL);
+//	    shell.setText("Hint");
+//	    shell.setSize(450, 430);
+//	    
+//	    
+//	    Image img= new Image(getDisplay(),"grumpy_cat.jpg");
+//	    shell.setBackgroundImage(img);
+//	    
+//	    final Label label = new Label(shell, SWT.NONE);
+//	    label.setText(str);
+//	    label.setBounds(100, 150, 100, 150);
+//	    
+//	    shell.open();
 	    
 	    System.out.println(str);
 	}
