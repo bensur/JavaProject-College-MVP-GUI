@@ -40,28 +40,18 @@ import presenter.PropertiesLoader;
  * 
  */
 public class MyModel extends Observable implements Model {
-	String generateAlg = PropertiesLoader.getInstance().getProperties().getGenerateMazeAlgorithm();
-	String solveAlg = PropertiesLoader.getInstance().getProperties().getSolveMazeAlgorithm();
+	public static final int TIMEOUT = 1;
+	private String generateAlg = PropertiesLoader.getInstance().getProperties().getGenerateMazeAlgorithm();
+	private String solveAlg = PropertiesLoader.getInstance().getProperties().getSolveMazeAlgorithm();
 	private HashMap<String, Maze3d> mazes = new HashMap<String, Maze3d>();
-//	private HashMap<String, Solution<Position>> solutions = new HashMap<String, Solution<Position>>();
 	private HashMap<Maze3d, Solution<Position>> solutionsForMazes = new HashMap<Maze3d, Solution<Position>>();
 	private ExecutorService executor = Executors.newFixedThreadPool(PropertiesLoader.getInstance().getProperties().getNumOfThreads());
 
-	//	public MyModel() {
-	//		properties = PropertiesLoader.getInstance().getProperties();
-	//		executor = Executors.newFixedThreadPool(properties.getNumOfThreads());
-	//		loadSolutions();
-	//	}
 
 	@Override
 	public HashMap<String, Maze3d> getMazes() {
 		return this.mazes;
 	}
-
-//	@Override
-//	public HashMap<String, Solution<Position>> getSolutions() {
-//		return this.solutions;
-//	}
 
 	@Override
 	public void generateMaze(String name, int floors, int rows, int cols) {
@@ -185,8 +175,6 @@ public class MyModel extends Observable implements Model {
 					throw new IllegalArgumentException("No such algorithm '" + solveAlg + "'");
 				}
 				Solution<Position> sol = search.search(new SearchableMaze3d(mazes.get(mazeName)));
-
-//				solutions.put(mazeName, sol);
 				solutionsForMazes.put(mazes.get(mazeName), sol);
 				setChanged();
 				notifyObservers("solution_ready_for " + mazeName + " " + method);	
@@ -224,7 +212,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void exit() {
 		try {
-			executor.awaitTermination(3, TimeUnit.SECONDS);
+			executor.awaitTermination(MyModel.TIMEOUT, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
