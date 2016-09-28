@@ -135,7 +135,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 				    	popUpWinner();
 				    }
 				});
-				popUpWinner();
 				
 			}		
 			
