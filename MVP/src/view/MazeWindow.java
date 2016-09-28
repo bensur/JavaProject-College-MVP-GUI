@@ -1,14 +1,8 @@
 package view;
 
-import java.awt.event.ActionListener;
-import java.beans.EventHandler;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.accessibility.AccessibleActionEvent;
-import org.eclipse.swt.accessibility.AccessibleActionListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -20,8 +14,6 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
 
 import algorithms.search.Solution;
 import algorithms.search.State;
