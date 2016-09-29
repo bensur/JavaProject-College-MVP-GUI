@@ -3,6 +3,7 @@
  */
 package boot;
 
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,9 +33,11 @@ public class Run {
 		properties.setGenerateMazeAlgorithm("GrowingTreeRand");
 		properties.setSolveMazeAlgorithm("DFS");
 		properties.setNumOfThreads(3);
+
 		
 		try {
-			XMLEncoder os = new XMLEncoder(new FileOutputStream("properties.xml"));
+			//XMLEncoder os = new XMLEncoder(getClass().getClassLoader().getResourceAsStream("properties.xml"));
+			XMLEncoder os = new XMLEncoder(new FileOutputStream("resources/properties.xml"));
 			os.writeObject(properties);
 			os.close();
 		} catch (IOException e) {

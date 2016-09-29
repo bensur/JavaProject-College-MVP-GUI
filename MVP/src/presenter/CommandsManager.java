@@ -305,8 +305,8 @@ public class CommandsManager {
 		 */
 		@Override
 		public void doCommand(String[] args) {
-			if ((args == null) || (args.length != 1)) {
-				view.display("solution_ready_for command need 1 argument:\nsolution_ready_for <METHOD>");
+			if ((args == null) || (args.length != 2)) {
+				view.display("solution_ready_for command need 2 argument:\nsolution_ready_for <MAZE_NAME> <METHOD>");
 				return;
 			}
 			if (args[1].equals("hint")) {

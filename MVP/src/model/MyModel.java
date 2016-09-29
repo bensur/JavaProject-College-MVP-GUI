@@ -233,6 +233,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void openXML(String file) {
 		try {
+			//XMLDecoder decoder = new XMLDecoder(getClass().getClassLoader().getResourceAsStream(file));
 			XMLDecoder decoder = new XMLDecoder(new FileInputStream(file));
 			Properties loadedProperties = (Properties) decoder.readObject();
 			decoder.close();
@@ -244,7 +245,7 @@ public class MyModel extends Observable implements Model {
 			this.solveAlg = loadedProperties.getSolveMazeAlgorithm();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	@Override
