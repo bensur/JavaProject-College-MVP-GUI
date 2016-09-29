@@ -71,7 +71,6 @@ public class MazeWindow extends BasicWindow implements View{
 		        String selected = fd.open();
 		        setChanged();
 		        notifyObservers("open_xml " + selected);
-		        System.out.println(selected); // TODO send to model
 			}
 			
 			@Override
@@ -257,7 +256,6 @@ public class MazeWindow extends BasicWindow implements View{
 	private void cleanExit() {
 		setChanged();
 		notifyObservers("exit");
-		shell.getDisplay().dispose();
 	}
 	
 }

@@ -8,21 +8,24 @@ import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 import model.Model;
 import view.View;
-
+/**
+ * Hold all commads as inner classes so they can 'know' command manager model and view
+ * @author Ben Surkiss & Yovel Shchori
+ */
 public class CommandsManager {
 	protected Model model;
 	protected View view;
 	/**
-	 * 
-	 * @param model
-	 * @param view
+	 * C'tor
+	 * @param model to set
+	 * @param view to set
 	 */
 	public CommandsManager(Model model, View view) {
 		this.model = model;
 		this.view = view;
 	}
 	/**
-	 * gets the commands map
+	 * Gets the commands map
 	 * @return commands HashMap
 	 */
 	public HashMap<String, Command> getCommands() {
@@ -152,7 +155,6 @@ public class CommandsManager {
 	
 	public class DisplaySolution implements Command {
 		String mazeName;
-//		HashMap<String, Solution<Position>> solutions;
 		/* (non-Javadoc)
 		 * @see controller.Command#doCommand()
 		 */
@@ -162,7 +164,6 @@ public class CommandsManager {
 				view.display("display_solution command need 1 argument:\ndisplay_solution <MAZE_NAME>");
 			else {
 				this.mazeName = args[0];
-//				this.solutions = model.getSolutions();
 				Solution<Position> sol = model.getSolution(model.getMazes().get(mazeName));
 				if (sol != null) {
 					view.display(sol.toString());
@@ -177,7 +178,6 @@ public class CommandsManager {
 	 * @author Ben Surkiss & Yovel Shchori
 	 * exit command, exits the cli
 	 */
-	
 	public class Exit implements Command {
 		/* (non-Javadoc)
 		 * @see controller.Command#doCommand()
@@ -262,7 +262,6 @@ public class CommandsManager {
 	public class SolveMaze implements Command {
 		private String mazeName;
 		private String method;
-		
 		/* (non-Javadoc)
 		 * @see presenter.Command#doCommand()
 		 */

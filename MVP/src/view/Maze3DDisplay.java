@@ -216,7 +216,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 	}
 	@Override
 	public void popUpWinner() {
-		System.out.println("winner!!!");
 		Shell shell = new Shell(getDisplay());
 	    shell.setText("Win");
 	    shell.setSize(450, 430);
@@ -231,61 +230,46 @@ public class Maze3DDisplay extends MazeDisplayer {
 	
 	public void popUpHint(String str) {
 		
-		DialogWindow dw = new DialogWindow() {
-
-			@Override
-			protected void initWidgets() {
-				shell.setText("Hint");
-			    shell.setSize(380, 380);
-			    
-			    
-			    Image img= new Image(getDisplay(),"grumpy2.jpg");
-			    shell.setBackgroundImage(img);
-			    
-			    final Label label = new Label(shell, SWT.NONE);
-			    label.setText(str);
-			    //label.setBounds(100, 150, 100, 150);
-			    label.setBounds(160, 0, 1000, 1000);
-
-			    
-			    shell.open();
-				
-			}
-		};
-		Display display = Display.getDefault();
-		dw.start(display);
-		
-		
-		System.out.println(str);
-//		// create a dialog with ok and cancel buttons and a question icon
-//		
-//		MessageBox dialog =
-//		        new MessageBox(getShell(), SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
-//		dialog.setText("My info");
-//		dialog.setMessage("Do you really want to do this?");
-//
-//		// open dialog and await user selection
-//		dialog.open();
-		
-		
-//		Display display = Display.getDefault();
-//		if (display == null)
-//	         display = Display.getDefault();
-//		Shell shell = new Shell(display, SWT.APPLICATION_MODAL);
-//	    shell.setText("Hint");
-//	    shell.setSize(450, 430);
-//	    
-//	    
-//	    Image img= new Image(getDisplay(),"grumpy_cat.jpg");
-//	    shell.setBackgroundImage(img);
-//	    
-//	    final Label label = new Label(shell, SWT.NONE);
-//	    label.setText(str);
-//	    label.setBounds(100, 150, 100, 150);
-//	    
-//	    shell.open();
+		Shell shell = new Shell(getDisplay());
+		shell.setText("Hint");
+	    shell.setSize(380, 380);
 	    
-	    System.out.println(str);
+	    
+	    Image img= new Image(getDisplay(),"grumpy2.jpg");
+	    shell.setBackgroundImage(img);
+	    
+	    final Label label = new Label(shell, SWT.NONE);
+	    label.setText(str);
+	    //label.setBounds(100, 150, 100, 150);
+	    label.setBounds(160, 0, 1000, 1000);
+
+	    
+	    shell.open();
+//		
+//		DialogWindow dw = new DialogWindow() {
+//
+//			@Override
+//			protected void initWidgets() {
+//				shell.setText("Hint");
+//			    shell.setSize(380, 380);
+//			    
+//			    
+//			    Image img= new Image(getDisplay(),"grumpy2.jpg");
+//			    shell.setBackgroundImage(img);
+//			    
+//			    final Label label = new Label(shell, SWT.NONE);
+//			    label.setText(str);
+//			    //label.setBounds(100, 150, 100, 150);
+//			    label.setBounds(160, 0, 1000, 1000);
+//
+//			    
+//			    shell.open();
+//				
+//			}
+//		};
+//		Display display = Display.getDefault();
+//		dw.start(display);
+	    
 	}
 	
 }

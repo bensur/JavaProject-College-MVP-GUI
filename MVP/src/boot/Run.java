@@ -3,15 +3,12 @@
  */
 package boot;
 
-import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 import mazeGenerators.algorithms.GrowingTreeGenerator;
-import mazeGenerators.algorithms.randomCellChooser;
+import mazeGenerators.algorithms.RandomPositionChooser;
 import model.MyModel;
 import presenter.Presenter;
 import presenter.Properties;
@@ -46,9 +43,9 @@ public class Run {
 		}
 		
 		Properties properties2 = PropertiesLoader.getInstance().getProperties();
-				
 		
-		MazeWindow view=new MazeWindow("maze example", 500, 300, new GrowingTreeGenerator(new randomCellChooser()).generate(5, 5, 5));		
+		
+		MazeWindow view=new MazeWindow("maze example", 500, 300, new GrowingTreeGenerator(new RandomPositionChooser()).generate(5, 5, 5));		
 //		MyView view = new MyView(in, out);
 		MyModel model = new MyModel();
 		
