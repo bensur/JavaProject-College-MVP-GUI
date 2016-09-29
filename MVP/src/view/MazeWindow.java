@@ -54,19 +54,19 @@ public class MazeWindow extends BasicWindow implements View{
 		// Set menu
 		Menu menuBar = new Menu(shell, SWT.BAR);
 		MenuItem cascadeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
-		cascadeFileMenu.setText("andFile");
+		cascadeFileMenu.setText("&File");
 		Menu fileMenu = new Menu(shell, SWT.DROP_DOWN);
 		cascadeFileMenu.setMenu(fileMenu);
 		// Add exit menu item
 		MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
-		exitItem.setText("andExit");
+		exitItem.setText("&Exit");
 		// Add exit listener
 		exitItem.addListener(SWT.Selection, event-> {
 			cleanExit();
 		});
 		// Add properties menu item
 		MenuItem openProperties = new MenuItem(fileMenu, SWT.PUSH);
-		openProperties.setText("andOpen Properties\tCTRL+O");
+		openProperties.setText("&Open Properties\tCTRL+O");
 		openProperties.setAccelerator(SWT.CTRL + 'O');
 		// Add open listener
 		openProperties.addSelectionListener(new SelectionListener() {
