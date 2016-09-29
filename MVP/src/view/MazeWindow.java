@@ -63,6 +63,7 @@ public class MazeWindow extends BasicWindow implements View{
 		// Add exit listener
 		exitItem.addListener(SWT.Selection, event-> {
 			cleanExit();
+			shell.dispose();
 		});
 		// Add properties menu item
 		MenuItem openProperties = new MenuItem(fileMenu, SWT.PUSH);
