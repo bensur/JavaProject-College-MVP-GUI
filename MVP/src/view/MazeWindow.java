@@ -2,20 +2,18 @@ package view;
 
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.swt.widgets.MessageBox;
 
 import algorithms.search.Solution;
 import algorithms.search.State;
@@ -133,6 +131,20 @@ public class MazeWindow extends BasicWindow implements View{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				solveMaze("hint");
+				
+				
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
+		});
+		
+		getHint.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				
+				solveMaze("hint");
 			}
 
 			@Override
@@ -177,7 +189,14 @@ public class MazeWindow extends BasicWindow implements View{
 	@Override
 	public void displayHint(Solution<Position> solution) {
 		String direction = getDirection(mazeDisplayer.curPosition, solution.getSolution().get(1).getState());
-		mazeDisplayer.popUpHint("Move " + direction);
+		
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		    	mazeDisplayer.popUpHint("Move " + direction);
+		    }
+		});
+
+		//mazeDisplayer.popUpHint("Move " + direction);
 		//JOptionPane.showMessageDialog(null,"Move " + direction);	
 	}
 
