@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * Properties object to represent 
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class Properties implements Serializable {
 	private static final long serialVersionUID = 1L;

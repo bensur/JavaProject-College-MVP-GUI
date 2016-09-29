@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * Dialog window for maze generation
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class GenerateMazeWindow extends DialogWindow {
 	View view;

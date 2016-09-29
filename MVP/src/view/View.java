@@ -9,7 +9,7 @@ import mazeGenerators.algorithms.Position;
 
 /**
  * View interface for view
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public interface View {
 	/**

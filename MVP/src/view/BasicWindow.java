@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * Abstract class for all windows to use 
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public abstract class BasicWindow extends Observable implements Runnable{
 	Display display;

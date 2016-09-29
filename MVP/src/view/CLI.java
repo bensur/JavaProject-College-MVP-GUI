@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.util.Observable;
 /**
  * CLI object in MVP architecture
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class CLI extends Observable {
 	private BufferedReader in;

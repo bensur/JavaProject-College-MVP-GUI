@@ -13,7 +13,7 @@ import mazeGenerators.algorithms.Position;
 
 /**
  * Canvas to represent Maze game
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public abstract class MazeDisplayer extends Canvas{
 	protected Maze3d maze;

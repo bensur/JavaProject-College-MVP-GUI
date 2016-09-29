@@ -22,7 +22,7 @@ import mazeGenerators.algorithms.Position;
 
 /**
  * BasicWindow implementation to show maze
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class MazeWindow extends BasicWindow implements View{
 	private Maze3d maze;
@@ -54,19 +54,19 @@ public class MazeWindow extends BasicWindow implements View{
 		// Set menu
 		Menu menuBar = new Menu(shell, SWT.BAR);
 		MenuItem cascadeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
-		cascadeFileMenu.setText("&File");
+		cascadeFileMenu.setText("andFile");
 		Menu fileMenu = new Menu(shell, SWT.DROP_DOWN);
 		cascadeFileMenu.setMenu(fileMenu);
 		// Add exit menu item
 		MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
-		exitItem.setText("&Exit");
+		exitItem.setText("andExit");
 		// Add exit listener
 		exitItem.addListener(SWT.Selection, event-> {
 			cleanExit();
 		});
 		// Add properties menu item
 		MenuItem openProperties = new MenuItem(fileMenu, SWT.PUSH);
-		openProperties.setText("&Open Properties\tCTRL+O");
+		openProperties.setText("andOpen Properties\tCTRL+O");
 		openProperties.setAccelerator(SWT.CTRL + 'O');
 		// Add open listener
 		openProperties.addSelectionListener(new SelectionListener() {

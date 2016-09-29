@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * Abstract class for all dialog windows to use 
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public abstract class DialogWindow {
 	protected Shell shell;	

@@ -1,7 +1,7 @@
 package presenter;
 /**
  * Command interface
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public interface Command {
 	/**

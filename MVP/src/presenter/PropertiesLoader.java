@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 /**
  * Singleton for Properties object 
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class PropertiesLoader {
 	private static PropertiesLoader instance;

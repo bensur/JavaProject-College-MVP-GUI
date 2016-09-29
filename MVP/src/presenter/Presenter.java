@@ -12,7 +12,7 @@ import view.View;
 
 /**
  * Presenter in MVP architecture
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class Presenter implements Observer {
 	private View view;

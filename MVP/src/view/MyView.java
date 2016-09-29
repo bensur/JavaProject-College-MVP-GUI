@@ -14,7 +14,7 @@ import mazeGenerators.algorithms.Position;
 
 /**
  * View implementation for MVP architecture
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class MyView extends Observable implements View, Observer {
 	@SuppressWarnings("unused") //Used in CLI

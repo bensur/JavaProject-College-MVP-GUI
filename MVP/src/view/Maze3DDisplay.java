@@ -15,7 +15,7 @@ import mazeGenerators.algorithms.Position;
 
 /**
  * MazeDisplayer implementation as 3D
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public class Maze3DDisplay extends MazeDisplayer {
 	/**

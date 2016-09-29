@@ -11,7 +11,7 @@ import mazeGenerators.algorithms.Position;
 
 /**
  * Model interface
- * @author Ben Surkiss & Yovel Shchori
+ * @author Ben Surkiss and Yovel Shchori
  */
 public interface Model {
 
