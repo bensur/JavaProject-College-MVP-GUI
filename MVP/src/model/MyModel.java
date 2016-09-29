@@ -59,9 +59,9 @@ public class MyModel extends Observable implements Model {
 	 * C'tor
 	 */
 	public MyModel() {
-		File solutionsFile = new File("cache/solutions.gzip");
+		File solutionsFile = new File("resources/solutions.gzip");
 		if (solutionsFile.exists())
-			this.loadSolutionsMap("cache/solutions.gzip");
+			this.loadSolutionsMap("resources/solutions.gzip");
 	}
 	
 	@Override
@@ -221,10 +221,10 @@ public class MyModel extends Observable implements Model {
 	public void exit() {
 		try {
 			executor.awaitTermination(MyModel.TIMEOUT, TimeUnit.SECONDS);
-			File solutionsPath = new File("cache");
+			File solutionsPath = new File("resources");
 			if (solutionsPath.exists())
 				solutionsPath.mkdirs();
-			saveSolutionsMap("cache/solutions.gzip");
+			saveSolutionsMap("resources/solutions.gzip");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
