@@ -71,8 +71,7 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void generateMaze(String name, int floors, int rows, int cols) {
-		executor.submit(new Callable<Maze3d>() { // TODO return Future<V>
-
+		executor.submit(new Callable<Maze3d>() {
 			@Override
 			public Maze3d call() throws Exception {
 				Maze3dGenerator gen;
@@ -105,10 +104,7 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void loadMaze(String mazeName, String fileName) {
-		Future<Maze3d> fMaze = executor.submit(new Callable<Maze3d>() { // TODO
-																		// return
-																		// Future<V>
-
+		Future<Maze3d> fMaze = executor.submit(new Callable<Maze3d>() {
 			@Override
 			public Maze3d call() throws Exception {
 				if (mazes.containsKey(mazeName))
@@ -143,8 +139,7 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void saveMaze(String mazeName, String fileName) {
-		executor.submit(new Callable<Maze3d>() { // TODO return Future<V>
-
+		executor.submit(new Callable<Maze3d>() {
 			@Override
 			public Maze3d call() throws Exception {
 				if (!mazes.containsKey(mazeName))
@@ -171,10 +166,7 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void solveMaze(String mazeName, String method) {
-		Future<Solution<Position>> fSolution = executor.submit(new Callable<Solution<Position>>() { // TODO
-																									// return
-																									// Future<V>
-
+		Future<Solution<Position>> fSolution = executor.submit(new Callable<Solution<Position>>() {
 			@Override
 			public Solution<Position> call() throws Exception {
 				if ((mazes.containsKey(mazeName)) && (solutionsForMazes.containsKey(mazes.get(mazeName)))) {
@@ -203,9 +195,6 @@ public class MyModel extends Observable implements Model {
 		});
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public void display(String string) {
 		setChanged();

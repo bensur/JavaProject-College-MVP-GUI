@@ -11,16 +11,22 @@ import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 
 
-// this is (1) the common type, and (2) a type of widget
-// (1) we can switch among different MazeDisplayers
-// (2) other programmers can use it naturally
+/**
+ * Canvas to represent Maze game
+ * @author Ben Surkiss & Yovel Shchori
+ */
 public abstract class MazeDisplayer extends Canvas{
-	
 	protected Maze3d maze;
 	protected Position curPosition;
 	protected int curFloor;
 	protected int[][] mazeData;
-	
+	/**
+	 * C'tor
+	 * @param parent to use
+	 * @param style to use
+	 * @param maze to use
+	 * @param curPosition to set
+	 */
 	public MazeDisplayer(Composite parent, int style, Maze3d maze, Position curPosition) {
 		super(parent, style);
 		this.maze = maze;
@@ -70,7 +76,10 @@ public abstract class MazeDisplayer extends Canvas{
 		});
 		
 	}
-
+	/**
+	 * Set maze
+	 * @param maze to set
+	 */
 	public void setMaze(Maze3d maze) {
 		this.maze = maze;
 		this.curPosition = this.maze.getStartPosition();
@@ -83,27 +92,51 @@ public abstract class MazeDisplayer extends Canvas{
 			}
 		});
 	}
-	
+	/**
+	 * Set current position
+	 * @param curPosition to set
+	 */
 	public void setCurPosition(Position curPosition) {
 		this.curPosition = curPosition;
 	}
-	
+	/**
+	 * Set character position
+	 * @param row to set
+	 * @param col to set
+	 * @param flors to set
+	 */
 	public abstract  void setCharacterPosition(int row,int col, int flors);
-	
+	/**
+	 * Move character up
+	 */
 	public abstract void moveUp();
-
+	/**
+	 * Move character down
+	 */
 	public abstract  void moveDown();
-
+	/**
+	 * Move character left
+	 */
 	public abstract  void moveLeft();
-
+	/**
+	 * Move character right
+	 */
 	public  abstract void moveRight();
-	
+	/**
+	 * Move character forward
+	 */
 	public  abstract void moveForward();
-	
+	/**
+	 * Move character backward
+	 */
 	public  abstract void moveBackward();
-	
+	/**
+	 * Popup winner
+	 */
 	public abstract void popUpWinner();
-	
+	/**
+	 * Popup hint
+	 * @param str hint
+	 */
 	public abstract void popUpHint(String str);
-	
 }

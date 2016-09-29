@@ -13,15 +13,19 @@ import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 
 /**
+ * View implementation for MVP architecture
  * @author Ben Surkiss & Yovel Shchori
- *
  */
 public class MyView extends Observable implements View, Observer {
 	@SuppressWarnings("unused") //Used in CLI
 	private BufferedReader in;
 	private PrintWriter out;
 	private CLI cli;
-	
+	/**
+	 * C'tor
+	 * @param in input stream to use
+	 * @param out output stream to use
+	 */
 	public MyView(BufferedReader in, PrintWriter out) {
 		this.in = in;
 		this.out = out;
@@ -45,7 +49,6 @@ public class MyView extends Observable implements View, Observer {
 		out.println(s);
 		out.flush();
 	}
-	
 
 	@Override
 	public void update(Observable o, Object arg) {

@@ -11,8 +11,8 @@ import model.Model;
 import view.View;
 
 /**
- * @author bensu
- *
+ * Presenter in MVP architecture
+ * @author Ben Surkiss & Yovel Shchori
  */
 public class Presenter implements Observer {
 	private View view;
@@ -20,13 +20,16 @@ public class Presenter implements Observer {
 	private Model model;
 	private CommandsManager commandsManager;
 	private HashMap<String, Command> commands;
-	
+	/**
+	 * C'tor
+	 * @param view to use
+	 * @param model to use
+	 */
 	public Presenter(View view, Model model) {
 		this.view = view;
 		this.model = model;
-		
-		commandsManager = new CommandsManager(model, view);
-		commands = commandsManager.getCommands();
+		this.commandsManager = new CommandsManager(model, view);
+		this.commands = commandsManager.getCommands();
 	}
 	/* (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
@@ -49,8 +52,6 @@ public class Presenter implements Observer {
 			}
 			Command cmd = commands.get(command);
 			cmd.doCommand(args);	
-		}
-		
+		}	
 	}
-
 }

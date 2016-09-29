@@ -14,12 +14,15 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 
 /**
+ * Dialog window for maze generation
  * @author Ben Surkiss & Yovel Shchori
- *
  */
 public class GenerateMazeWindow extends DialogWindow {
 	View view;
-	
+	/**
+	 * C'tor
+	 * @param view to use
+	 */
 	public GenerateMazeWindow(View view) {
 		this.view = view;
 	}
@@ -69,7 +72,6 @@ public class GenerateMazeWindow extends DialogWindow {
 			public void widgetSelected(SelectionEvent arg0) {				
 				MessageBox msg = new MessageBox(shell, SWT.OK);
 				msg.setText("Title");
-				//msg.setMessage("Button was clicked");
 				int rows = Integer.parseInt(txtRows.getText());
 				int cols = Integer.parseInt(txtCols.getText());
 				int flos = Integer.parseInt(txtFlos.getText());

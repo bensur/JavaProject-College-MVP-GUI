@@ -20,13 +20,22 @@ import algorithms.search.State;
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 
+/**
+ * BasicWindow implementation to show maze
+ * @author Ben Surkiss & Yovel Shchori
+ */
 public class MazeWindow extends BasicWindow implements View{
-
 	private Maze3d maze;
 	private View view = this;
 	private MazeDisplayer mazeDisplayer;
 	private String mazeName;
-
+	/**
+	 * C'tor
+	 * @param title to set
+	 * @param width to set
+	 * @param height to set
+	 * @param maze to use
+	 */
 	public MazeWindow(String title, int width, int height, Maze3d maze) {
 		super(title, width, height);
 		this.maze = maze;
@@ -130,8 +139,6 @@ public class MazeWindow extends BasicWindow implements View{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				solveMaze("hint");
-				
-				
 			}
 
 			@Override
@@ -142,7 +149,6 @@ public class MazeWindow extends BasicWindow implements View{
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				
 				solveMaze("hint");
 			}
 
@@ -172,7 +178,6 @@ public class MazeWindow extends BasicWindow implements View{
 		notifyObservers("solve " + mazeName + " " + method);
 	}
 
-
 	@Override
 	public void displayMaze(Maze3d maze3d) {
 		maze = maze3d;
@@ -181,7 +186,6 @@ public class MazeWindow extends BasicWindow implements View{
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
 		run();
 	}
 
@@ -194,9 +198,6 @@ public class MazeWindow extends BasicWindow implements View{
 		    	mazeDisplayer.popUpHint("Move " + direction);
 		    }
 		});
-
-		//mazeDisplayer.popUpHint("Move " + direction);
-		//JOptionPane.showMessageDialog(null,"Move " + direction);	
 	}
 
 	@Override
@@ -227,7 +228,12 @@ public class MazeWindow extends BasicWindow implements View{
 			}
 		}
 	}
-
+	/**
+	 * Get direction from p1 to p2
+	 * @param p1 first position
+	 * @param p2 second position
+	 * @return String direction
+	 */
 	private String getDirection(Position p1, Position p2) {
 		if (p1.getX() == p2.getX() - 1) {
 			return "Down";
@@ -257,5 +263,4 @@ public class MazeWindow extends BasicWindow implements View{
 		setChanged();
 		notifyObservers("exit");
 	}
-	
 }

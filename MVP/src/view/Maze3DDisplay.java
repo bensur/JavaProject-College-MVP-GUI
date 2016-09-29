@@ -13,9 +13,13 @@ import org.eclipse.swt.widgets.Shell;
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 
+/**
+ * MazeDisplayer implementation as 3D
+ * @author Ben Surkiss & Yovel Shchori
+ */
 public class Maze3DDisplay extends MazeDisplayer {
 	/**
-	 * 
+	 * Paint a cube for given arguments
 	 * @param p
 	 * @param h
 	 * @param e
@@ -29,7 +33,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 
 		int[] r=f.clone();
 		for(int k=1;k<r.length;r[k]=f[k]-(int)(h),k+=2);
-
 
 		int[] b={r[0],r[1],r[2],r[3],f[2],f[3],f[0],f[1]};
 		e.gc.drawPolygon(b);
@@ -112,10 +115,6 @@ public class Maze3DDisplay extends MazeDisplayer {
 						}
 					}
 				}
-				
-				if (curPosition.equals(maze.getGoalPosition())) {
-					//TODO tell user it's the end of the maze
-				}
 			}
 		});
 	}
@@ -127,13 +126,11 @@ public class Maze3DDisplay extends MazeDisplayer {
 		if (this.maze.isValidPosition(pos)) {
 			this.curPosition = pos;
 			if (pos.equals(maze.getGoalPosition())) {
-
 				Display.getDefault().syncExec(new Runnable() {
 				    public void run() {
 				    	popUpWinner();
 				    }
 				});
-				
 			}		
 			
 			getDisplay().syncExec(new Runnable() {
@@ -152,7 +149,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 		Position p = maze.getAbovePosition(curPosition);
 		if (p != null) {
 			moveCharacter(p);
-		} //TODO maybe return error msg (?)
+		}
 	}
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveDown()
@@ -162,7 +159,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 		Position p = maze.getBelowPosition(curPosition);
 		if (p != null) {
 			moveCharacter(p);
-		} //TODO maybe return error msg (?)
+		}
 	}
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveLeft()
@@ -172,7 +169,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 		Position p = maze.getLeftPosition(curPosition);
 		if (p != null) {
 			moveCharacter(p);
-		} //TODO maybe return error msg (?)
+		}
 	}
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveRight()
@@ -182,9 +179,8 @@ public class Maze3DDisplay extends MazeDisplayer {
 		Position p = maze.getRightPosition(curPosition);
 		if (p != null) {
 			moveCharacter(p);
-		} //TODO maybe return error msg (?)
+		}
 	}
-	
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveForward()
 	 */
@@ -193,9 +189,8 @@ public class Maze3DDisplay extends MazeDisplayer {
 		Position p = maze.getForwardPosition(curPosition);
 		if (p != null) {
 			moveCharacter(p);
-		} //TODO maybe return error msg (?)
+		}
 	}
-	
 	/* (non-Javadoc)
 	 * @see view.MazeDisplayer#moveBackward()
 	 */
@@ -204,16 +199,21 @@ public class Maze3DDisplay extends MazeDisplayer {
 		Position p = maze.getBackwardPosition(curPosition);
 		if (p != null) {
 			moveCharacter(p);
-		} //TODO maybe return error msg (?)
+		}
 	}
-
+	/* (non-Javadoc)
+	 * @see view.MazeDisplayer#setCharacterPosition(int row, int col, int flo)
+	 */
 	@Override
 	public void setCharacterPosition(int row, int col, int flo) {
 		Position p = new Position(row, col, flo);
 		if (p != null) {
 			moveCharacter(p);
-		} //TODO maybe return error msg (?)
+		}
 	}
+	/* (non-Javadoc)
+	 * @see view.MazeDisplayer#popUpWinner()
+	 */
 	@Override
 	public void popUpWinner() {
 		Shell shell = new Shell(getDisplay());
@@ -224,52 +224,23 @@ public class Maze3DDisplay extends MazeDisplayer {
 	    shell.setBackgroundImage(img);
 	    
 	    shell.open();
-		
-
 	}
-	
+	/* (non-Javadoc)
+	 * @see view.MazeDisplayer#popUpHint(String str)
+	 */
+	@Override
 	public void popUpHint(String str) {
-		
 		Shell shell = new Shell(getDisplay());
 		shell.setText("Hint");
 	    shell.setSize(380, 380);
-	    
 	    
 	    Image img= new Image(getDisplay(),"grumpy2.jpg");
 	    shell.setBackgroundImage(img);
 	    
 	    final Label label = new Label(shell, SWT.NONE);
 	    label.setText(str);
-	    //label.setBounds(100, 150, 100, 150);
 	    label.setBounds(160, 0, 1000, 1000);
 
-	    
 	    shell.open();
-//		
-//		DialogWindow dw = new DialogWindow() {
-//
-//			@Override
-//			protected void initWidgets() {
-//				shell.setText("Hint");
-//			    shell.setSize(380, 380);
-//			    
-//			    
-//			    Image img= new Image(getDisplay(),"grumpy2.jpg");
-//			    shell.setBackgroundImage(img);
-//			    
-//			    final Label label = new Label(shell, SWT.NONE);
-//			    label.setText(str);
-//			    //label.setBounds(100, 150, 100, 150);
-//			    label.setBounds(160, 0, 1000, 1000);
-//
-//			    
-//			    shell.open();
-//				
-//			}
-//		};
-//		Display display = Display.getDefault();
-//		dw.start(display);
-	    
 	}
-	
 }

@@ -278,7 +278,7 @@ public class CommandsManager {
 	}
 	/**
 	 * @author Ben Surkiss & Yovel Shchori
-	 * TODO comment
+	 * Print given arguments in view
 	 */
 	public class Print implements Command {
 		/* (non-Javadoc)
@@ -286,7 +286,9 @@ public class CommandsManager {
 		 */
 		@Override
 		public void doCommand(String[] args) {
-			// TODO check input
+			if (args == null) {
+				return;
+			}
 			StringBuilder sb = new StringBuilder();
 			for (String s : args)
 				sb.append(s + " ");
@@ -295,7 +297,7 @@ public class CommandsManager {
 	}
 	/**
 	 * @author Ben Surkiss & Yovel Shchori
-	 * TODO comment
+	 * Pass solution to view based on given method
 	 */
 	public class SolutionReady implements Command {
 		/* (non-Javadoc)
@@ -303,19 +305,21 @@ public class CommandsManager {
 		 */
 		@Override
 		public void doCommand(String[] args) {
-			// TODO check input
+			if ((args == null) || (args.length != 1)) {
+				view.display("solution_ready_for command need 1 argument:\nsolution_ready_for <METHOD>");
+				return;
+			}
 			if (args[1].equals("hint")) {
 				view.displayHint(model.getSolution(model.getMazes().get(args[0])));
 			}
 			else {
 				view.displaySolution(model.getSolution(model.getMazes().get(args[0])));
 			}
-			//view.display(model.getSolutions().get(args[0]), args[1]);
 		}
 	}
 	/**
 	 * @author Ben Surkiss & Yovel Shchori
-	 * TODO comment
+	 * Display loaded maze in view
 	 */
 	public class MazeLoaded implements Command {
 		/* (non-Javadoc)
@@ -323,13 +327,16 @@ public class CommandsManager {
 		 */
 		@Override
 		public void doCommand(String[] args) {
-			// TODO check input
+			if ((args == null) || (args.length != 1)) {
+				view.display("maze_loaded command need 1 argument:\nmaze_loaded <MAZE_NAME>");
+				return;
+			}
 			view.displayMaze(model.getMazes().get(args[0]));
 		}
 	}
 	/**
 	 * @author Ben Surkiss & Yovel Shchori
-	 * TODO comment
+	 * Display maze in view
 	 */
 	public class MazeReady implements Command {
 		/* (non-Javadoc)
@@ -337,14 +344,16 @@ public class CommandsManager {
 		 */
 		@Override
 		public void doCommand(String[] args) {
-			// TODO check input
+			if ((args == null) || (args.length != 1)) {
+				view.display("maze_ready command need 1 argument:\nmaze_ready <MAZE_NAME>");
+				return;
+			}
 			view.displayMaze(model.getMazes().get(args[0]));
 		}
 	}
 	/**
-	 * 
 	 * @author Ben Surkiss & Yovel Shchori
-	 * TODO comment
+	 * Load given XML to program
 	 */
 	public class OpenXML implements Command {
 		/* (non-Javadoc)
@@ -352,7 +361,10 @@ public class CommandsManager {
 		 */
 		@Override
 		public void doCommand(String[] args) {
-			// TODO check input
+			if ((args == null) || (args.length != 1)) {
+				view.display("open_xml command need 1 argument:\nopen_xml <XML_FILE_NAME>");
+				return;
+			}
 			model.openXML(args[0]);
 		}
 	}

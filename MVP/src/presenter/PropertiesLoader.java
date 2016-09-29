@@ -8,17 +8,22 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
- * @author yschori
- *
+ * Singleton for Properties object 
+ * @author Ben Surkiss & Yovel Shchori
  */
 public class PropertiesLoader {
 	private static PropertiesLoader instance;
 	private Properties properties;
-	
+	/**
+	 * Getter for properties
+	 * @return properties object
+	 */
 	public Properties getProperties() {
 		return properties;
 	}
-	
+	/**
+	 * C'tor
+	 */
 	private PropertiesLoader() 
 	{
 		try {
@@ -29,7 +34,10 @@ public class PropertiesLoader {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Get instance for singleton
+	 * @return instance of this object
+	 */
 	public static PropertiesLoader getInstance() {
 		if (instance == null) 
 			instance = new PropertiesLoader();
