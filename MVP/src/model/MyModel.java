@@ -169,7 +169,7 @@ public class MyModel extends Observable implements Model {
 		Future<Solution<Position>> fSolution = executor.submit(new Callable<Solution<Position>>() {
 			@Override
 			public Solution<Position> call() throws Exception {
-				if ((mazes.containsKey(mazeName)) andand (solutionsForMazes.containsKey(mazes.get(mazeName)))) {
+				if ((mazes.containsKey(mazeName)) && (solutionsForMazes.containsKey(mazes.get(mazeName)))) {
 					setChanged();
 					notifyObservers("solution_ready_for " + mazeName + " " + method);
 					return solutionsForMazes.get(mazes.get(mazeName));
