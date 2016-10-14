@@ -56,8 +56,8 @@ public class Maze3DDisplay extends MazeDisplayer {
 		final Color black = new Color(null, 0,0,0);
 		final Color red = new Color(null,255,0,0);
 		final Color darkRed = new Color(null,200,0,0);
-		final Image startImage = new Image(getDisplay(), "resources/start.png");
-		final Image endImage = new Image(getDisplay(), "resources/end.png");
+		final Image startImage = new Image(getDisplay(), "../resources/start.png");
+		final Image endImage = new Image(getDisplay(), "../resources/end.png");
 		
 		setBackground(white);
 		addPaintListener(new PaintListener() {
@@ -220,7 +220,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 	    shell.setText("Win");
 	    shell.setSize(450, 430);
 	    
-	    Image img= new Image(getDisplay(),"resources/happy_cat.png");
+	    Image img= new Image(getDisplay(),"../resources/happy_cat.png");
 	    shell.setBackgroundImage(img);
 	    
 	    shell.open();
@@ -234,7 +234,7 @@ public class Maze3DDisplay extends MazeDisplayer {
 		shell.setText("Hint");
 	    shell.setSize(380, 380);
 	    
-	    Image img= new Image(getDisplay(),"resources/grumpy2.jpg");
+	    Image img= new Image(getDisplay(),"../resources/grumpy2.jpg");
 	    shell.setBackgroundImage(img);
 	    
 	    final Label label = new Label(shell, SWT.NONE);
